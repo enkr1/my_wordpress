@@ -1,0 +1,30 @@
+/*----------------------
+### Classic
+----------------------*/
+
+[data-type="core/freeform"] {
+
+	.wp-block-freeform.block-library-rich-text__tinymce {
+
+		> * {
+			margin: 0 0 2em;
+		}
+
+		// Vanilla Galleries
+		.gallery {
+
+			img {
+
+				@include nm-media;
+				width: 100%;
+			}
+
+			.gallery-caption {
+				margin-top: 0.5em;
+				margin-bottom: 0;
+				font-size: 0.8em;
+				opacity: 0.8;
+			}
+		}
+	}
+}

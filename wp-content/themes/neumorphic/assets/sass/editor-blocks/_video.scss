@@ -1,0 +1,24 @@
+/*----------------------
+# Video
+----------------------*/
+
+[data-type="core/video"] {
+
+	.wp-block-video {
+
+		video {
+
+			@include nm-media;
+			display: block;
+		}
+
+		figcaption {
+			text-align: inherit;
+		}
+	}
+
+	&[data-align="center"]  .wp-block-video video {
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
