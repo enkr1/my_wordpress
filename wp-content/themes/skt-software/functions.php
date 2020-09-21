@@ -48,9 +48,9 @@ function skt_software_widgets_init() {
 		'name'          => esc_html__( 'Sidebar', 'skt-software' ),
 		'description'   => esc_html__( 'Appears on sidebar', 'skt-software' ),
 		'id'            => 'sidebar-1',
-		'before_widget' => '',		
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',		
 		'before_title'  => '<h3 class="widget-title titleborder"><span>',
-		'after_title'   => '</span></h3><aside id="%1$s" class="widget %2$s">',
+		'after_title'   => '</span></h3>',
 		'after_widget'  => '</aside>',
 	) ); 	
 	
@@ -58,9 +58,9 @@ function skt_software_widgets_init() {
 		'name'          => esc_html__( 'Footer Column 1', 'skt-software' ),
 		'description'   => esc_html__( 'Appears on page footer', 'skt-software' ),
 		'id'            => 'fc-1',
-		'before_widget' => '',		
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',		
 		'before_title'  => '<h5>',
-		'after_title'   => '</h5><aside id="%1$s" class="widget %2$s">',
+		'after_title'   => '</h5>',
 		'after_widget'  => '</aside>',
 	) );
 	
@@ -68,9 +68,9 @@ function skt_software_widgets_init() {
 		'name'          => esc_html__( 'Footer Column 2', 'skt-software' ),
 		'description'   => esc_html__( 'Appears on page footer', 'skt-software' ),
 		'id'            => 'fc-2',
-		'before_widget' => '',		
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',		
 		'before_title'  => '<h5>',
-		'after_title'   => '</h5><aside id="%1$s" class="widget %2$s">',
+		'after_title'   => '</h5>',
 		'after_widget'  => '</aside>',
 	) );
 	
@@ -78,9 +78,9 @@ function skt_software_widgets_init() {
 		'name'          => esc_html__( 'Footer Column 3', 'skt-software' ),
 		'description'   => esc_html__( 'Appears on page footer', 'skt-software' ),
 		'id'            => 'fc-3',
-		'before_widget' => '',		
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',		
 		'before_title'  => '<h5>',
-		'after_title'   => '</h5><aside id="%1$s" class="widget %2$s">',
+		'after_title'   => '</h5>',
 		'after_widget'  => '</aside>',
 	) );		
 		
@@ -88,9 +88,9 @@ function skt_software_widgets_init() {
 		'name'          => esc_html__( 'Footer Column 4', 'skt-software' ),
 		'description'   => esc_html__( 'Appears on page footer', 'skt-software' ),
 		'id'            => 'fc-4',
-		'before_widget' => '',		
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',		
 		'before_title'  => '<h5>',
-		'after_title'   => '</h5><aside id="%1$s" class="widget %2$s">',
+		'after_title'   => '</h5>',
 		'after_widget'  => '</aside>',
 	) );	
 	

@@ -4,7 +4,7 @@ Contributors: sonalsinha21
 Requires at least: 5.0
 Requires PHP:  5.2
 Tested up to: 5.5.1
-Version: 2.0
+Version: 3.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/license-list.html#GPLv2
 Tags:two-columns,right-sidebar,full-width-template,custom-background,custom-colors,custom-menu,sticky-post,theme-options,threaded-comments,featured-images,footer-widgets,translation-ready,rtl-language-support,custom-logo,editor-style,custom-header,blog,e-commerce,portfolio
@@ -53,6 +53,12 @@ License URL: http://www.gnu.org/licenses/gpl-2.0.html
 For any help you can mail us at support[at]sktthemes.com
 
 == Changelog ==
+= 3.0 =
+*      Resolved Issue Of Default widget if unassigned the UI doesn't show properly.
+
+= 2.1 =
+*      Sidebar ID and Class Generation Resolved.
+
 = 2.0 =
 *      Rectified the illustration image on banner.
 	   Validated Cart Count number and link.
