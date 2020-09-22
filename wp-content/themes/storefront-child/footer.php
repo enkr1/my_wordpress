@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying the footer.
  *
@@ -9,34 +10,29 @@
 
 ?>
 
-		</div><!-- .col-full -->
-	</div><!-- #content -->
+</div><!-- .col-full -->
+</div><!-- #content -->
 
 
-	<?php do_action( 'storefront_before_footer' ); ?>
+<?php do_action('storefront_before_footer'); ?>
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="col-full">
+<footer id="colophon" class="site-footer" role="contentinfo">
+	<div class="col-full">
 
-	<div class="testing">testing text this is child theme</div>
-			<?php
-			/**
-			 * Functions hooked in to storefront_footer action
-			 *
-			 * @hooked storefront_footer_widgets - 10
-			 * @hooked storefront_credit         - 20
-			 */
-			do_action( 'storefront_footer' );
-			?>
+		<div class="footer-text">
+			<p>Copyright &#169;</p>
+			<p>Jing Hui's first WordPress site</p>
+		</div>
 
-		</div><!-- .col-full -->
-	</footer><!-- #colophon -->
+	</div><!-- .col-full -->
+</footer><!-- #colophon -->
 
-	<?php do_action( 'storefront_after_footer' ); ?>
+<?php do_action('storefront_after_footer'); ?>
 
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
 
 </body>
+
 </html>
