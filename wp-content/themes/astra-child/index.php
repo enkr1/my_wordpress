@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The main template file.
  *
@@ -13,37 +14,44 @@
  * @since 1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
 get_header(); ?>
 
-<?php if ( astra_page_layout() == 'left-sidebar' ) : ?>
+<?php if (astra_page_layout() == 'left-sidebar') : ?>
 
 	<?php get_sidebar(); ?>
 
 <?php endif ?>
 
-	<!-- <div class="home-main-content">
-		<h1>test h1</h1>
-		<p>testing p</p>
-	</div> -->
-	<br>
+<div class="home home-main-content">
+	<div class="home-main-text">
+		<h1>Customized WordPress Site</h1>
+		<p>Customized by Jing Hui</p>
+	</div>
+</div>
 
-	<div id="primary main-body" <?php astra_primary_class(); ?>>
+<br>
 
-		<?php astra_primary_content_top(); ?>
+<div id="primary main-body" <?php astra_primary_class(); ?>>
 
-		<?php astra_content_loop(); ?>
+	<div class="primary-content-title">
+		<h1>Recent Posts</h1>
+	</div>
 
-		<?php astra_pagination(); ?>
+	<?php astra_primary_content_top(); ?>
 
-		<?php astra_primary_content_bottom(); ?>
+	<?php astra_content_loop(); ?>
 
-	</div><!-- #primary -->
+	<?php astra_pagination(); ?>
 
-<?php if ( astra_page_layout() == 'right-sidebar' ) : ?>
+	<?php astra_primary_content_bottom(); ?>
+
+</div><!-- #primary -->
+
+<?php if (astra_page_layout() == 'right-sidebar') : ?>
 
 	<?php get_sidebar(); ?>
 

@@ -44,8 +44,6 @@ get_header(); ?>
 
 <div class="blog-sidebar-opener" id="blog-sidebar-opener">Open Sidebar</div>
 
-
-
 <?php if (astra_page_layout() == 'right-sidebar') : ?>
 
 	<?php get_sidebar(); ?>

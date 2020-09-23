@@ -21,7 +21,48 @@ span.onsale {
 }
 
 .woocommerce .woocommerce-ordering select {
-    -webkit-box-shadow: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
-    -moz-box-shadow: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
-    box-shadow: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
+    -webkit-box-shadow: $theme-light-neumorphism;
+    -moz-box-shadow: $theme-light-neumorphism;
+    box-shadow: $theme-light-neumorphism;
 }
+
+// Start of Cart
+table.shop_table.shop_table_responsive.cart.woocommerce-cart-form__contents, .cart_totals {
+    background-color: $theme-light-transparent;
+}
+
+.astra-shop-summary-wrap {
+    padding: 0 1rem;
+}
+
+a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart {
+    padding: .6rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+a.added_to_cart.wc-forward {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+// End of Cart
+
+// Start of single item page
+.woocommerce-tabs.wc-tabs-wrapper {
+    background-color: $theme-light-transparent;
+    padding: 0 2rem 1rem 2rem;
+}
+// End of single item page
+
+// Start of Checkout
+form.checkout.woocommerce-checkout {
+    background-color: $theme-light-transparent;
+    padding-left: 3rem;
+}
+
+.input-text, .select2-selection {
+    padding: .5rem !important;
+}
+// End of Checkout

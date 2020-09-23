@@ -12,7 +12,7 @@
  * @package Astra
  * @since 1.0.0
  * 
- * Home, Cart, Checkout
+ * Cart, Checkout
  * 
  */
 

@@ -1,0 +1,8 @@
+2020-09-23T08:23:44+00:00 CRITICAL syntax error, unexpected '}', expecting ')' in /var/www/html/wp-content/themes/astra-child/functions.php on line 88
+
+2020-09-23T08:25:48+00:00 CRITICAL syntax error, unexpected '}', expecting ')' in /var/www/html/wp-content/themes/astra-child/functions.php on line 88
+
+2020-09-23T08:27:49+00:00 CRITICAL syntax error, unexpected '}', expecting ')' in /var/www/html/wp-content/themes/astra-child/functions.php on line 87
+
+2020-09-23T08:29:48+00:00 CRITICAL syntax error, unexpected '}', expecting ')' in /var/www/html/wp-content/themes/astra-child/functions.php on line 91
+

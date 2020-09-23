@@ -2,11 +2,14 @@
     position: fixed;
     padding: 2%;
     right: 0;
+    top: 20%;
     border-radius: 1rem;
-    background-color: rgba(241, 241, 241, 0.89);
+    background-color: $sidebar-color;
+    box-shadow: $theme-light-neumorphism;
     opacity: 1;
     transition: all .5s ease-in-out;
     z-index: 999;
+    width: 20%;
 
     li {
         list-style-type: none;
@@ -17,15 +20,26 @@
 .blog-sidebar-hider {
     position: fixed;
     cursor: pointer;
-    padding: 0 2%;
+    padding: 0 1%;
     right: 0;
+    top: 22%;
 }
 
 .blog-sidebar-opener {
     position: fixed;
-    padding: 2%;
+    padding: 0 1%;
     right: 0;
+    top: 22%;
     opacity: 0;
     cursor: pointer;
     transition: all .5s ease-in-out;
+    color: $theme-color;
+    border-top-left-radius: .6rem;
+    border-bottom-left-radius: .6rem;
+    background-color: $theme-light-transparent;
+    box-shadow: $theme-light-neumorphism;
+}
+
+.widget_search .search-form .search-field {
+    padding: .6rem;
 }

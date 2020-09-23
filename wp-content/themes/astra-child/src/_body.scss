@@ -3,9 +3,18 @@ header.entry-header.ast-no-thumbnail {
     padding: 0 !important;
 }
 
-div#secondary {
-    padding: 0 3%!important;
+.ast-archive-description {
+    border-bottom: none;
 }
+
+// div#primary {
+//     background-color: $theme-light-transparent;
+// }
+
+div#secondary {
+    padding: 0 3% !important;
+}
+
 // End of Blog page
 
 button {
