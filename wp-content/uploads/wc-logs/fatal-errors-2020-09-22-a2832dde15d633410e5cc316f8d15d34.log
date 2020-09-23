@@ -1,0 +1,6 @@
+2020-09-22T07:01:44+00:00 CRITICAL syntax error, unexpected end of file in /var/www/html/wp-content/themes/astra-child/functions.php on line 41
+
+2020-09-22T08:34:08+00:00 CRITICAL syntax error, unexpected end of file, expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) in /var/www/html/wp-content/themes/astra-child/index.php on line 38
+
+2020-09-22T08:45:36+00:00 CRITICAL syntax error, unexpected end of file in /var/www/html/wp-content/themes/astra-child/functions.php on line 44
+

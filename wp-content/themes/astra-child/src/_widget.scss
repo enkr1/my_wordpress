@@ -1,0 +1,31 @@
+.blog-sidebar {
+    position: fixed;
+    padding: 2%;
+    right: 0;
+    border-radius: 1rem;
+    background-color: rgba(241, 241, 241, 0.89);
+    opacity: 1;
+    transition: all .5s ease-in-out;
+    z-index: 999;
+
+    li {
+        list-style-type: none;
+    }
+
+}
+
+.blog-sidebar-hider {
+    position: fixed;
+    cursor: pointer;
+    padding: 0 2%;
+    right: 0;
+}
+
+.blog-sidebar-opener {
+    position: fixed;
+    padding: 2%;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}

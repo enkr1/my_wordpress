@@ -1,0 +1,27 @@
+li.product .button,
+.woocommerce-page ul.products li.product .button,
+a.checkout-button.button.alt.wc-forward,
+.woocommerce a.button,
+.woocommerce button.button.alt,
+.woocommerce-page table.cart td.actions .button,
+.woocommerce-page #content table.cart td.actions .button,
+.woocommerce a.button.alt,
+.woocommerce .woocommerce-message a.button,
+.ast-site-header-cart .widget_shopping_cart .buttons .button.checkout,
+.woocommerce button.button.alt.disabled,
+.wc-block-grid__products .wc-block-grid__product .wp-block-button__link {
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.5);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.5);
+    box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.5);
+}
+
+span.onsale {
+    opacity: 0.8;
+    /* background: #eaafc8 !important; */
+}
+
+.woocommerce .woocommerce-ordering select {
+    -webkit-box-shadow: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
+    -moz-box-shadow: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
+    box-shadow: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
+}

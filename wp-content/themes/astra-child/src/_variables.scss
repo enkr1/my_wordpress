@@ -1,0 +1,26 @@
+//--------------------------------
+// ------ Variable Design ------
+//--------------------------------
+
+$main-page-content-background: #ffffff50;
+
+
+$theme-color: #EC008C;
+$theme-dark: #b4005f;
+$theme-light: #ff5abc;
+$theme-color-second: #4054B2;
+$theme-color-second-light: #7580e5;
+$theme-color-second-dark: #002c82;
+$theme-bg: #f6f6f6;//#fcf3f9;//#faeff8;
+$theme-bg-secondary: #eceef8;
+
+$color-default: $theme-color;//rgba(108, 88, 179, 0.75);
+$color-primary:  $theme-color-second;//rgba(58, 133, 191, 0.75);
+$color-success: rgba(103, 192, 103, 0.75);
+$color-info:  $theme-color-second-light;//rgba(91, 192, 222, 0.75);
+$color-warning: rgba(240, 173, 78, 0.75);
+$color-danger: rgba(217, 83, 78, 0.75);
+
+$box-shadow-color: #ddd;
+
+$text-color-card:#666;
