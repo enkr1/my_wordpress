@@ -1,14 +1,12 @@
-//--------------------------------
-// ------ Variable Design ------
-//--------------------------------
-
-$main-page-content-background: #ffffff50;
-
+// Variables for all scss
 
 $theme-color: #654ea3;
+$theme-dark-color: #30205c;
 $theme-color-secondary: #eaafc8;
+
 $theme-light-transparent: rgba(255, 255, 255, 0.6);
 
-$sidebar-color: rgb(255, 255, 255, 0.7);
 $theme-neumorphism: 0px 0px 30px 0px rgba(101,78,163,0.3);
 $theme-light-neumorphism: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
+
+$sidebar-color: rgb(255, 255, 255, 0.7);

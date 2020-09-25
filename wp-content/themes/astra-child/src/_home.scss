@@ -1,12 +1,12 @@
 body {
-    background: url("/wp-content/uploads/2020/09/Webp.net-compress-image-1-scaled.jpg") no-repeat center fixed;
+    background: url("/wp-content/uploads/2020/09/Webp.net-compress-image-1-1-1.jpg") no-repeat center fixed;
 
     /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
-    // no-repeat center fixed for background;
+    
+    // blur bg img
+    // filter: blur(8px);
+    // -webkit-filter: blur(8px);
 }
 
 main#main {
@@ -28,6 +28,7 @@ main#main {
         h1 {
             font-size: 4rem;
             color: $theme-color;
+            margin-bottom: 1rem;
         }
 
         p {
@@ -40,9 +41,60 @@ main#main {
     h1 {
         text-align: center;
         color: $theme-color;
-        padding: 2rem 0;
+        padding: 0;
     }
 }
+
+// Start of featured product
+.featured-products-page {
+    height: 80vh;
+
+    h1 {
+        color: $theme-color;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .featured-products {
+        display: flex;
+        // flex-direction: column;
+
+        .featured-product {
+
+            .featured-product-img {
+                height: 80% !important;
+                object-fit: cover;
+            }
+
+            .featured-product-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: auto;
+                color: white;
+                transform: translateY(-80%);
+            }
+
+            h3 {
+                transform: translateY(-20%);
+            }
+        }
+    }
+}
+
+// .woocommerce ul.products li.product a img,
+// .woocommerce-page ul.products li.product a img {
+//     margin-bottom: .8em;
+//     height: 80%;
+// }
+
+// .woocommerce ul.products li.product .woocommerce-loop-product__title,
+// .woocommerce-page ul.products li.product .woocommerce-loop-product__title {
+//     color: white;
+//     transform: translate(1rem, -5rem);
+// }
+
+// End of featured product
 
 .ast-article-post {
     padding: 1rem 2rem 0 2rem;

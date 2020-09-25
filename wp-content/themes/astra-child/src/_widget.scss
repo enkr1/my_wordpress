@@ -1,7 +1,7 @@
 .blog-sidebar {
     position: fixed;
     padding: 2%;
-    right: 0;
+    right: -100%;
     top: 20%;
     border-radius: 1rem;
     background-color: $sidebar-color;
@@ -23,6 +23,7 @@
     padding: 0 1%;
     right: 0;
     top: 22%;
+    opacity: 0;
 }
 
 .blog-sidebar-opener {
@@ -30,9 +31,9 @@
     padding: 0 1%;
     right: 0;
     top: 22%;
-    opacity: 0;
+    opacity: 1;
     cursor: pointer;
-    transition: all .5s ease-in-out;
+    transition: all .2s ease-in-out;
     color: $theme-color;
     border-top-left-radius: .6rem;
     border-bottom-left-radius: .6rem;

@@ -51,136 +51,152 @@ add_action('wp_enqueue_scripts', 'my_custom_scripts');
 
 // END ENQUEUE PARENT ACTION
 
-// https://www.wpbeginner.com/wp-tutorials/how-to-create-custom-post-types-in-wordpress/
-// Our custom post type function
-function create_food_post_type()
+// // https://www.wpbeginner.com/wp-tutorials/how-to-create-custom-post-types-in-wordpress/
+// // Our custom post type function
+// function create_sponsors_post_type()
+// {
+//     register_post_type(
+//         'sponsors',
+//         // CPT Options
+//         array(
+//             'labels' => array(
+//                 'name' => __('Sponsors'),
+//                 'singular_name' => __('Sponsor')
+//             ),
+//             'public' => true,
+//             'has_archive' => true,
+//             'hierarchical' => true, // true = page || false = post (by default)
+//             'menu_icon' => 'dashicons-buddicons-buddypress-logo',
+//             // 'support' => array('title', 'editor', 'thumbnail'),
+//             // 'rewrite' => array('slug' => 'foods'),
+//             // 'show_in_rest' => true, // show post page (add)
+//         )
+//     );
+
+//     add_post_type_support('sponsors', 'author');
+// }
+// // Hooking up our function to theme setup
+// add_action('init', 'create_sponsors_post_type');
+
+// // assign to post type
+// function sponsors_taxonomy()
+// {
+//     register_taxonomy(
+//         'types',
+//         array('sponsors'),
+//         array(
+//             'labels' => array(
+//                 'name' => __('Companies'),
+//                 'singular_name' => __('Company')
+//             ),
+//             'public' => true,
+//             'hierarchical' => true, // true = Category; false = Tag
+//         )
+//     );
+// }
+
+// add_action('init', 'sponsors_taxonomy');
+
+// https://stackoverflow.com/questions/25027108/best-way-to-override-woocommerce-css
+// To overwrite WooCommerce css
+add_filter('woocommerce_enqueue_styles', '__return_false');
+
+// https://www.cloudways.com/blog/how-to-create-custom-post-types-in-wordpress/
+/* Custom Post type start */
+function cw_post_type_recipes()
 {
-    register_post_type(
-        'foods',
-        // CPT Options
-        array(
-            'labels' => array(
-                'name' => __('Foods'),
-                'singular_name' => __('Food')
-            ),
-            'public' => true,
-            'has_archive' => true,
-            'hierarchical' => true, // true = page || false = post (by default)
-            'menu_icon' => 'dashicons-products',
-            // 'support' => array('title', 'editor', 'thumbnail'),
-            // 'rewrite' => array('slug' => 'foods'),
-            // 'show_in_rest' => true, // show post page (add)
-        )
+
+    $supports = array(
+        'title', // post title
+        'editor', // post content
+        'author', // post author
+        'thumbnail', // featured images
+        'excerpt', // post excerpt
+        'custom-fields', // custom fields
+        'comments', // post comments
+        'revisions', // post revisions
+        'post-formats', // post formats
     );
-}
-// Hooking up our function to theme setup
-add_action('init', 'create_food_post_type');
 
-// assign to post type
-function my_first_taxonomy()
-{
-    register_taxonomy(
-        'types',
-        array('foods'),
-        array(
-            'labels' => array(
-                'name' => __('Types'),
-                'singular_name' => __('Type')
-            ),
-            'public' => true,
-            'hierarchical' => false, // Category
-        )
-    );
-}
-
-add_action('init', 'my_first_taxonomy');
-
-// ---------------------------------------------------------------------------------------------------------------------------
-// Our custom post type function
-function create_posttype()
-{
-
-    register_post_type(
-        'movies',
-        // CPT Options
-        array(
-            'labels' => array(
-                'name' => __('Movies'),
-                'singular_name' => __('Movie')
-            ),
-            'public' => true,
-            'has_archive' => true,
-            'rewrite' => array('slug' => 'movies'),
-            'show_in_rest' => true,
-
-        )
-    );
-}
-// Hooking up our function to theme setup
-add_action('init', 'create_posttype');
-/*
-* Creating a function to create our CPT
-*/
-
-function custom_post_type()
-{
-
-    // Set UI labels for Custom Post Type
     $labels = array(
-        'name'                => _x('Movies', 'Post Type General Name', 'twentytwenty'),
-        'singular_name'       => _x('Movie', 'Post Type Singular Name', 'twentytwenty'),
-        'menu_name'           => __('Movies', 'twentytwenty'),
-        'parent_item_colon'   => __('Parent Movie', 'twentytwenty'),
-        'all_items'           => __('All Movies', 'twentytwenty'),
-        'view_item'           => __('View Movie', 'twentytwenty'),
-        'add_new_item'        => __('Add New Movie', 'twentytwenty'),
-        'add_new'             => __('Add New', 'twentytwenty'),
-        'edit_item'           => __('Edit Movie', 'twentytwenty'),
-        'update_item'         => __('Update Movie', 'twentytwenty'),
-        'search_items'        => __('Search Movie', 'twentytwenty'),
-        'not_found'           => __('Not Found', 'twentytwenty'),
-        'not_found_in_trash'  => __('Not found in Trash', 'twentytwenty'),
+        'name' => _x('Recipes', 'plural'),
+        'singular_name' => _x('Recipe', 'singular'),
+        'menu_name' => _x('Recipes', 'admin menu'),
+        'name_admin_bar' => _x('Recipes', 'admin bar'),
+        'add_new' => _x('Add New Recipe', 'add new'),
+        'add_new_item' => __('Add New Recipe'),
+        'new_item' => __('New Recipe'),
+        'edit_item' => __('Edit Recipe'),
+        'view_item' => __('View Recipe'),
+        'all_items' => __('All Recipes'),
+        'search_items' => __('Search Recipes'),
+        'not_found' => __('No Recipes Found.'),
     );
-
-    // Set other options for Custom Post Type
 
     $args = array(
-        'label'               => __('movies', 'twentytwenty'),
-        'description'         => __('Movie news and reviews', 'twentytwenty'),
-        'labels'              => $labels,
-        // Features this CPT supports in Post Editor
-        'supports'            => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields',),
-        // You can associate this CPT with a taxonomy or custom taxonomy. 
-        'taxonomies'          => array('genres'),
-        /* A hierarchical CPT is like Pages and can have
-            * Parent and child items. A non-hierarchical CPT
-            * is like Posts.
-            */
-        'hierarchical'        => false,
-        'public'              => true,
-        'show_ui'             => true,
-        'show_in_menu'        => true,
-        'show_in_nav_menus'   => true,
-        'show_in_admin_bar'   => true,
-        'menu_position'       => 5,
-        'can_export'          => true,
-        'has_archive'         => true,
-        'exclude_from_search' => false,
-        'publicly_queryable'  => true,
-        'capability_type'     => 'post',
-        'show_in_rest' => true,
-
+        'supports' => $supports,
+        'labels' => $labels,
+        'public' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'all-recipes'),
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_icon' => 'dashicons-food',
     );
-
-    // Registering your Custom Post Type
-    register_post_type('movies', $args);
+    register_post_type('recipes', $args);
+}
+add_action('init', 'cw_post_type_recipes');
+// assign to post type
+function recipes_taxonomy()
+{
+    register_taxonomy(
+        'categories',
+        array('recipes'),
+        array(
+            'labels' => array(
+                'name' => __('Categories'),
+                'singular_name' => __('Category')
+            ),
+            'public' => true,
+            'hierarchical' => true, // true = Category; false = Tag
+        )
+    );
 }
 
-/* Hook into the 'init' action so that the function
-    * Containing our post type registration is not 
-    * unnecessarily executed. 
-    */
+add_action('init', 'recipes_taxonomy');
+/* Custom Post type end */
 
-add_action('init', 'custom_post_type', 0);
+// // Profile icon, try ltr
+// // https://wordpress.stackexchange.com/questions/196453/displaying-logged-in-user-name-in-wordpress-menu
+// function give_profile_name()
+// {
+//     $user = wp_get_current_user();
+//     if (!is_user_logged_in())
+//         $name = "User not logged in";
+//     else
+//         $name = $user->user_firstname . ' ' . $user->user_lastname;
+//     return $name;
+// }
+// add_shortcode('profile_name', 'give_profile_name');
 
-// ---------------------------------------------------------------------------------------------------------------------------
+// add_filter('wp_nav_menu_objects', 'my_dynamic_menu_items');
+// function my_dynamic_menu_items($menu_items)
+// {
+//     foreach ($menu_items as $menu_item) {
+//         if ('#profile_name#' == $menu_item->title) {
+//             global $shortcode_tags;
+//             if (isset($shortcode_tags['profile_name'])) {
+//                 // Or do_shortcode(), if you must.
+//                 $menu_item->title = call_user_func($shortcode_tags['profile_name']);
+//             }
+//         }
+//     }
+
+//     return $menu_items;
+// }
+
+// https://stackoverflow.com/questions/45338960/how-to-change-date-to-days-ago-human-time-diff
+function wp_relative_date($post_date)
+{
+    return human_time_diff($post_date, current_time('timestamp')) . ' ago';
+}

@@ -1,0 +1,61 @@
+// Start of recipes' template page
+.template-recipes-container {
+    padding: 8rem 3rem;
+    height: auto;
+    background: $theme-light-transparent;
+
+
+
+    .template-recipes-main-display {
+        height: 60vh;
+        background: url("/wp-content/uploads/2020/09/recipe-bg.jpeg") no-repeat center fixed; // https://unsplash.com/photos/AemWnTSPxoE
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        h1 {
+            font-size: 6rem;
+            font-family: 'Apple Chancery'; // https://www.tutorialbrain.com/css_tutorial/css_font_family_list/
+        }
+
+    }
+
+    .template-recipe-rows-container {
+        padding-top: 3rem;
+
+        .template-recipe-row {
+            display: flex;
+            padding-top: 1rem;
+            min-height: 30rem;
+
+            img {
+                width: 20rem;
+                height: 20rem;
+                object-fit: cover;
+            }
+
+            .template-recipe-excerpt {
+                padding: 0 1rem 0 3rem;
+
+                .posted-detail {
+                    padding: 0;
+                    margin: 0;
+                    font-style: italic;
+                    opacity: .8;
+                }
+
+                .template-recipe-btn {
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+// End of recipes' template page
+
+
+// Start of Single Recipe 
+
+// End of Single Recipe 

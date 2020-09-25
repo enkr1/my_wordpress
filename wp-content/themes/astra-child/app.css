@@ -1,7 +1,11 @@
 .main-header-bar {
   position: fixed;
   width: 100vw;
+  transition: all 0.5s ease-in-out;
   box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.5);
+}
+.main-header-bar .main-navigation a {
+  font-size: 0.9rem;
 }
 
 .site-branding {
@@ -13,11 +17,8 @@
 }
 
 body {
-  background: url("/wp-content/uploads/2020/09/Webp.net-compress-image-1-scaled.jpg") no-repeat center fixed;
+  background: url("/wp-content/uploads/2020/09/Webp.net-compress-image-1-1-1.jpg") no-repeat center fixed;
   /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
 }
 
@@ -40,6 +41,7 @@ main#main {
 .home-main-content .home-main-text h1 {
   font-size: 4rem;
   color: #654ea3;
+  margin-bottom: 1rem;
 }
 .home-main-content .home-main-text p {
   color: rgba(0, 0, 0, 0.6);
@@ -48,7 +50,35 @@ main#main {
 .primary-content-title h1 {
   text-align: center;
   color: #654ea3;
-  padding: 2rem 0;
+  padding: 0;
+}
+
+.featured-products-page {
+  height: 80vh;
+}
+.featured-products-page h1 {
+  color: #654ea3;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.featured-products-page .featured-products {
+  display: flex;
+}
+.featured-products-page .featured-products .featured-product .featured-product-img {
+  height: 80% !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.featured-products-page .featured-products .featured-product .featured-product-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  color: white;
+  transform: translateY(-80%);
+}
+.featured-products-page .featured-products .featured-product h3 {
+  transform: translateY(-20%);
 }
 
 .ast-article-post {
@@ -78,6 +108,14 @@ button {
   box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.3);
 }
 
+nav.woocommerce-breadcrumb {
+  color: black !important;
+}
+nav.woocommerce-breadcrumb a {
+  font-weight: bold;
+  color: #30205c !important;
+}
+
 li.product .button,
 .woocommerce-page ul.products li.product .button,
 a.checkout-button.button.alt.wc-forward,
@@ -102,12 +140,18 @@ span.onsale {
   box-shadow: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
 }
 
-table.shop_table.shop_table_responsive.cart.woocommerce-cart-form__contents, .cart_totals {
+table.shop_table.shop_table_responsive.cart.woocommerce-cart-form__contents,
+.cart_totals {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
 .astra-shop-summary-wrap {
   padding: 0 1rem;
+}
+
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product {
+  padding: 0 0 0.6rem 0;
 }
 
 a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart {
@@ -123,6 +167,10 @@ a.added_to_cart.wc-forward {
   justify-content: center;
 }
 
+td.product-remove {
+  padding-left: 2rem !important;
+}
+
 .woocommerce-tabs.wc-tabs-wrapper {
   background-color: rgba(255, 255, 255, 0.6);
   padding: 0 2rem 1rem 2rem;
@@ -133,14 +181,15 @@ form.checkout.woocommerce-checkout {
   padding-left: 3rem;
 }
 
-.input-text, .select2-selection {
+.input-text,
+.select2-selection {
   padding: 0.5rem !important;
 }
 
 .blog-sidebar {
   position: fixed;
   padding: 2%;
-  right: 0;
+  right: -100%;
   top: 20%;
   border-radius: 1rem;
   background-color: rgba(255, 255, 255, 0.7);
@@ -160,6 +209,7 @@ form.checkout.woocommerce-checkout {
   padding: 0 1%;
   right: 0;
   top: 22%;
+  opacity: 0;
 }
 
 .blog-sidebar-opener {
@@ -167,9 +217,9 @@ form.checkout.woocommerce-checkout {
   padding: 0 1%;
   right: 0;
   top: 22%;
-  opacity: 0;
+  opacity: 1;
   cursor: pointer;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s ease-in-out;
   color: #654ea3;
   border-top-left-radius: 0.6rem;
   border-bottom-left-radius: 0.6rem;
@@ -183,4 +233,48 @@ form.checkout.woocommerce-checkout {
 
 .footer-adv-overlay {
   padding: 3rem 0;
+}
+
+.template-recipes-container {
+  padding: 8rem 3rem;
+  height: auto;
+  background: rgba(255, 255, 255, 0.6);
+}
+.template-recipes-container .template-recipes-main-display {
+  height: 60vh;
+  background: url("/wp-content/uploads/2020/09/recipe-bg.jpeg") no-repeat center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.template-recipes-container .template-recipes-main-display h1 {
+  font-size: 6rem;
+  font-family: "Apple Chancery";
+}
+.template-recipes-container .template-recipe-rows-container {
+  padding-top: 3rem;
+}
+.template-recipes-container .template-recipe-rows-container .template-recipe-row {
+  display: flex;
+  padding-top: 1rem;
+  min-height: 30rem;
+}
+.template-recipes-container .template-recipe-rows-container .template-recipe-row img {
+  width: 20rem;
+  height: 20rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.template-recipes-container .template-recipe-rows-container .template-recipe-row .template-recipe-excerpt {
+  padding: 0 1rem 0 3rem;
+}
+.template-recipes-container .template-recipe-rows-container .template-recipe-row .template-recipe-excerpt .posted-detail {
+  padding: 0;
+  margin: 0;
+  font-style: italic;
+  opacity: 0.8;
+}
+.template-recipes-container .template-recipe-rows-container .template-recipe-row .template-recipe-excerpt .template-recipe-btn {
+  color: white;
 }
