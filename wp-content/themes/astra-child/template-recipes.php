@@ -2,7 +2,7 @@
 /* Template Name: Recipes */
 get_header();
 query_posts(array(
-	'posts_per_page' => 3,
+	'posts_per_page' => -1,
     'post_type' => 'recipes'
 )); ?>
 
@@ -21,7 +21,7 @@ query_posts(array(
         ?>
             <div class="template-recipe-row">
                 <?php
-                if ($product_thumbnail[0] != null) {
+                if ($product_thumbnail != null) {
                 ?>
                     <img src="<?php echo $product_thumbnail[0]; ?>" alt="<?php echo $product_thumbnail_alt; ?>">
                 <?php

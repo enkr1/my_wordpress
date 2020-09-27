@@ -3,7 +3,7 @@ body {
 
     /* Create the parallax scrolling effect */
     background-size: cover;
-    
+
     // blur bg img
     // filter: blur(8px);
     // -webkit-filter: blur(8px);
@@ -64,6 +64,7 @@ main#main {
             .featured-product-img {
                 height: 80% !important;
                 object-fit: cover;
+                box-shadow: $theme-neumorphism;
             }
 
             .featured-product-btn {
@@ -73,6 +74,7 @@ main#main {
                 margin: auto;
                 color: white;
                 transform: translateY(-80%);
+                box-shadow: $theme-dark-neumorphism;
             }
 
             h3 {
@@ -81,19 +83,6 @@ main#main {
         }
     }
 }
-
-// .woocommerce ul.products li.product a img,
-// .woocommerce-page ul.products li.product a img {
-//     margin-bottom: .8em;
-//     height: 80%;
-// }
-
-// .woocommerce ul.products li.product .woocommerce-loop-product__title,
-// .woocommerce-page ul.products li.product .woocommerce-loop-product__title {
-//     color: white;
-//     transform: translate(1rem, -5rem);
-// }
-
 // End of featured product
 
 .ast-article-post {

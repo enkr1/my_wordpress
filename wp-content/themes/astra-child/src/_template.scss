@@ -17,6 +17,7 @@
         h1 {
             font-size: 6rem;
             font-family: 'Apple Chancery'; // https://www.tutorialbrain.com/css_tutorial/css_font_family_list/
+            color: $theme-dark-color;
         }
 
     }
@@ -47,6 +48,7 @@
 
                 .template-recipe-btn {
                     color: white;
+                    box-shadow: $theme-neumorphism;
                 }
             }
         }
@@ -57,5 +59,16 @@
 
 
 // Start of Single Recipe 
+.template-single-recipe {
+    padding: 10rem 1rem;
+    height: auto;
+    display: flex;
 
+    img {
+        // width: 20rem;
+        height: 50vh;
+        object-fit: cover;
+        margin-right: 5rem;
+    }
+}
 // End of Single Recipe 

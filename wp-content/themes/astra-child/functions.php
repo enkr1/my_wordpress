@@ -52,42 +52,65 @@ add_action('wp_enqueue_scripts', 'my_custom_scripts');
 // END ENQUEUE PARENT ACTION
 
 // // https://www.wpbeginner.com/wp-tutorials/how-to-create-custom-post-types-in-wordpress/
-// // Our custom post type function
-// function create_sponsors_post_type()
+// https://stackoverflow.com/questions/25027108/best-way-to-override-woocommerce-css
+// To overwrite WooCommerce css
+add_filter('woocommerce_enqueue_styles', '__return_false');
+
+// // https://www.cloudways.com/blog/how-to-create-custom-post-types-in-wordpress/
+// /* Custom Post type start */
+// function cw_post_type_recipes()
 // {
-//     register_post_type(
-//         'sponsors',
-//         // CPT Options
-//         array(
-//             'labels' => array(
-//                 'name' => __('Sponsors'),
-//                 'singular_name' => __('Sponsor')
-//             ),
-//             'public' => true,
-//             'has_archive' => true,
-//             'hierarchical' => true, // true = page || false = post (by default)
-//             'menu_icon' => 'dashicons-buddicons-buddypress-logo',
-//             // 'support' => array('title', 'editor', 'thumbnail'),
-//             // 'rewrite' => array('slug' => 'foods'),
-//             // 'show_in_rest' => true, // show post page (add)
-//         )
+
+//     $supports = array(
+//         'title', // post title
+//         'editor', // post content
+//         'author', // post author
+//         'thumbnail', // featured images
+//         'excerpt', // post excerpt
+//         'custom-fields', // custom fields
+//         'comments', // post comments
+//         'revisions', // post revisions
+//         'post-formats', // post formats
 //     );
 
-//     add_post_type_support('sponsors', 'author');
-// }
-// // Hooking up our function to theme setup
-// add_action('init', 'create_sponsors_post_type');
+//     $labels = array(
+//         'name' => _x('Recipes', 'plural'),
+//         'singular_name' => _x('Recipe', 'singular'),
+//         'menu_name' => _x('Recipes', 'admin menu'),
+//         'name_admin_bar' => _x('Recipes', 'admin bar'),
+//         'add_new' => _x('Add New Recipe', 'add new'),
+//         'add_new_item' => __('Add New Recipe'),
+//         'new_item' => __('New Recipe'),
+//         'edit_item' => __('Edit Recipe'),
+//         'view_item' => __('View Recipe'),
+//         'all_items' => __('All Recipes'),
+//         'search_items' => __('Search Recipes'),
+//         'not_found' => __('No Recipes Found.'),
+//     );
 
+//     $args = array(
+//         'supports' => $supports,
+//         'labels' => $labels,
+//         'public' => true,
+//         'query_var' => true,
+//         'rewrite' => array('slug' => 'all-recipes'),
+//         'has_archive' => true,
+//         'hierarchical' => false,
+//         'menu_icon' => 'dashicons-food',
+//     );
+//     register_post_type('recipes', $args);
+// }
+// add_action('init', 'cw_post_type_recipes');
 // // assign to post type
-// function sponsors_taxonomy()
+// function recipes_taxonomy()
 // {
 //     register_taxonomy(
-//         'types',
-//         array('sponsors'),
+//         'categories',
+//         array('recipes'),
 //         array(
 //             'labels' => array(
-//                 'name' => __('Companies'),
-//                 'singular_name' => __('Company')
+//                 'name' => __('Categories'),
+//                 'singular_name' => __('Category')
 //             ),
 //             'public' => true,
 //             'hierarchical' => true, // true = Category; false = Tag
@@ -95,100 +118,15 @@ add_action('wp_enqueue_scripts', 'my_custom_scripts');
 //     );
 // }
 
-// add_action('init', 'sponsors_taxonomy');
-
-// https://stackoverflow.com/questions/25027108/best-way-to-override-woocommerce-css
-// To overwrite WooCommerce css
-add_filter('woocommerce_enqueue_styles', '__return_false');
-
-// https://www.cloudways.com/blog/how-to-create-custom-post-types-in-wordpress/
-/* Custom Post type start */
-function cw_post_type_recipes()
-{
-
-    $supports = array(
-        'title', // post title
-        'editor', // post content
-        'author', // post author
-        'thumbnail', // featured images
-        'excerpt', // post excerpt
-        'custom-fields', // custom fields
-        'comments', // post comments
-        'revisions', // post revisions
-        'post-formats', // post formats
-    );
-
-    $labels = array(
-        'name' => _x('Recipes', 'plural'),
-        'singular_name' => _x('Recipe', 'singular'),
-        'menu_name' => _x('Recipes', 'admin menu'),
-        'name_admin_bar' => _x('Recipes', 'admin bar'),
-        'add_new' => _x('Add New Recipe', 'add new'),
-        'add_new_item' => __('Add New Recipe'),
-        'new_item' => __('New Recipe'),
-        'edit_item' => __('Edit Recipe'),
-        'view_item' => __('View Recipe'),
-        'all_items' => __('All Recipes'),
-        'search_items' => __('Search Recipes'),
-        'not_found' => __('No Recipes Found.'),
-    );
-
-    $args = array(
-        'supports' => $supports,
-        'labels' => $labels,
-        'public' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'all-recipes'),
-        'has_archive' => true,
-        'hierarchical' => false,
-        'menu_icon' => 'dashicons-food',
-    );
-    register_post_type('recipes', $args);
-}
-add_action('init', 'cw_post_type_recipes');
-// assign to post type
-function recipes_taxonomy()
-{
-    register_taxonomy(
-        'categories',
-        array('recipes'),
-        array(
-            'labels' => array(
-                'name' => __('Categories'),
-                'singular_name' => __('Category')
-            ),
-            'public' => true,
-            'hierarchical' => true, // true = Category; false = Tag
-        )
-    );
-}
-
-add_action('init', 'recipes_taxonomy');
-/* Custom Post type end */
-
-// // Profile icon, try ltr
-// // https://wordpress.stackexchange.com/questions/196453/displaying-logged-in-user-name-in-wordpress-menu
-// function give_profile_name()
-// {
-//     $user = wp_get_current_user();
-//     if (!is_user_logged_in())
-//         $name = "User not logged in";
-//     else
-//         $name = $user->user_firstname . ' ' . $user->user_lastname;
-//     return $name;
-// }
-// add_shortcode('profile_name', 'give_profile_name');
+// add_action('init', 'recipes_taxonomy');
+// /* Custom Post type end */
 
 // add_filter('wp_nav_menu_objects', 'my_dynamic_menu_items');
 // function my_dynamic_menu_items($menu_items)
 // {
 //     foreach ($menu_items as $menu_item) {
-//         if ('#profile_name#' == $menu_item->title) {
-//             global $shortcode_tags;
-//             if (isset($shortcode_tags['profile_name'])) {
-//                 // Or do_shortcode(), if you must.
-//                 $menu_item->title = call_user_func($shortcode_tags['profile_name']);
-//             }
+//         if (strpos($menu_item->title, '#profile_name#') !== false) {
+//             $menu_item->title =  str_replace("#profile_name#",  wp_get_current_user()->user_firstname, $menu_item->title);
 //         }
 //     }
 
@@ -196,7 +134,7 @@ add_action('init', 'recipes_taxonomy');
 // }
 
 // https://stackoverflow.com/questions/45338960/how-to-change-date-to-days-ago-human-time-diff
-function wp_relative_date($post_date)
-{
-    return human_time_diff($post_date, current_time('timestamp')) . ' ago';
-}
+// function wp_relative_date($post_date)
+// {
+//     return human_time_diff($post_date, current_time('timestamp')) . ' ago';
+// }

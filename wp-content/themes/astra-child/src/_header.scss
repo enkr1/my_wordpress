@@ -21,3 +21,14 @@
 .ast-site-identity {
     padding: 1em 0 0 0;
 }
+
+.nav-user-name {
+    z-index: 999;
+    position: fixed;
+    right: 1rem;
+    top: .8rem;
+
+    p {
+        color: $theme-color;
+    }
+}

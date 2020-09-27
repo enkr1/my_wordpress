@@ -32,6 +32,7 @@ $product_thumbnail_alt = get_post_meta($post_thumbnail_id, '_wp_attachment_image
 
 <div class="template-single-recipe">
 	<?php
+
 	if ($product_thumbnail[0] != null) {
 	?>
 		<img src="<?php echo $product_thumbnail[0]; ?>" alt="<?php echo $product_thumbnail_alt; ?>">
@@ -44,10 +45,9 @@ $product_thumbnail_alt = get_post_meta($post_thumbnail_id, '_wp_attachment_image
 	?>
 
 	<div class="template-single-recipe-description">
-		<!-- here  -->
 		<h2><?php the_title(); ?></h2>
 		<p><?php the_content(); ?></p>
-		
+
 		<p>Posted by <?php the_author(); ?> <?php echo get_the_date(); ?></p>
 	</div>
 

@@ -16,6 +16,16 @@
   padding: 1em 0 0 0;
 }
 
+.nav-user-name {
+  z-index: 999;
+  position: fixed;
+  right: 1rem;
+  top: 0.8rem;
+}
+.nav-user-name p {
+  color: #654ea3;
+}
+
 body {
   background: url("/wp-content/uploads/2020/09/Webp.net-compress-image-1-1-1.jpg") no-repeat center fixed;
   /* Create the parallax scrolling effect */
@@ -68,6 +78,7 @@ main#main {
   height: 80% !important;
   -o-object-fit: cover;
      object-fit: cover;
+  box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.3);
 }
 .featured-products-page .featured-products .featured-product .featured-product-btn {
   display: flex;
@@ -76,6 +87,7 @@ main#main {
   margin: auto;
   color: white;
   transform: translateY(-80%);
+  box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.7);
 }
 .featured-products-page .featured-products .featured-product h3 {
   transform: translateY(-20%);
@@ -128,7 +140,7 @@ a.checkout-button.button.alt.wc-forward,
 .ast-site-header-cart .widget_shopping_cart .buttons .button.checkout,
 .woocommerce button.button.alt.disabled,
 .wc-block-grid__products .wc-block-grid__product .wp-block-button__link {
-  box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.5);
+  box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.3);
 }
 
 span.onsale {
@@ -136,8 +148,12 @@ span.onsale {
   /* background: #eaafc8 !important; */
 }
 
+.woocommerce .woocommerce-ordering {
+  margin: 0 0 2rem 0;
+}
 .woocommerce .woocommerce-ordering select {
   box-shadow: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
+  padding: 0.2rem;
 }
 
 table.shop_table.shop_table_responsive.cart.woocommerce-cart-form__contents,
@@ -251,6 +267,7 @@ form.checkout.woocommerce-checkout {
 .template-recipes-container .template-recipes-main-display h1 {
   font-size: 6rem;
   font-family: "Apple Chancery";
+  color: #30205c;
 }
 .template-recipes-container .template-recipe-rows-container {
   padding-top: 3rem;
@@ -277,4 +294,17 @@ form.checkout.woocommerce-checkout {
 }
 .template-recipes-container .template-recipe-rows-container .template-recipe-row .template-recipe-excerpt .template-recipe-btn {
   color: white;
+  box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.3);
+}
+
+.template-single-recipe {
+  padding: 10rem 1rem;
+  height: auto;
+  display: flex;
+}
+.template-single-recipe img {
+  height: 50vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 5rem;
 }
