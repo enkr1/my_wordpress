@@ -21,8 +21,20 @@ if (!defined('ABSPATH')) {
 }
 
 get_header(); ?>
+<script>
+    jQuery(window).ready(hideLoader);
+    setTimeout(hideLoader, 3000);
 
-<div id="pokemon-body" class="pokemon-body">
+    function hideLoader() {
+        var container = document.getElementsByClassName("loading-process");
+        for (var i = 0; i < container.length; i++) {
+            jQuery('#loader').addClass('hidden');
+            container[i].style.display = 'block';
+        }
+    }
+</script>
+<div id="loader" class="lds-dual-ring overlay"></div>
+<div id="pokemon-body" class="pokemon-body loading-process" style="display:none;">
      
     <?php echo do_shortcode('[pokemon_single]'); ?>
 

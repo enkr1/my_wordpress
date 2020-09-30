@@ -55,14 +55,23 @@
         }
     }
 
-    .pokemon-buttons {
+    .pokemon-pagination {
         margin: 1rem auto auto auto;
         display: flex;
         justify-content: space-between;
 
-        button {
-            width: 12rem;
-
+        p, a {
+            min-width: 3em;
+            text-align: center;
+            margin: auto;
+        }
+        p {
+            &.curr-page {
+                font-size: 1.1rem;
+                // font-weight: bold;
+            }
+        }
+        a {
             &.pokemon-previous {
                 margin: auto auto auto 1rem;
             }
@@ -165,6 +174,7 @@
                     display: inline-block;
                     transform: translateY(-.6rem) !important;
                     font-size: 1.6rem;
+                    font-weight: 500;
                 }
             }
         }

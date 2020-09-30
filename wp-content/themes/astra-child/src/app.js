@@ -38,13 +38,14 @@ const colors = {
     Unknown: '#9DC1B770'
 };
 
+// https://bulbapedia.bulbagarden.net/wiki/Category:Stat_color_templates
 const stat_colors = {
-    // Hp
-    // Attack
-    // Defense
-    // Special - attack
-    // Special - defense
-    // Speed
+    Hp: '#FF5959',
+    Attack: '#F5AC78',
+    Defense: '#FAE078',
+    'Special-attack': '#9DB7F5',
+    'Special-defense': '#A7DB8D',
+    Speed: '#FA92B2'
 }
 
 jQuery(document).ready(function () {
@@ -68,7 +69,7 @@ jQuery(document).ready(function () {
             document.getElementById('blog-sidebar-hider').style.opacity = '1';
         }
 
-    } else if ((window.location.pathname).includes("pokemon")) {
+    } else if ((window.location.pathname).includes("pokemon-single")) {
         window.onload = function () {
             // var pokemon_type = document.getElementsByClassName('pokemon-type')[0].innerHTML;
             var pokemon_types = document.getElementsByClassName('pokemon-type');
@@ -78,26 +79,40 @@ jQuery(document).ready(function () {
                 var main_type = pokemon_types[i].innerHTML;
                 if (main_type.includes(",")) {
                     main_type = main_type.substring(0, main_type.indexOf(", "));
-                    pokemon_bgs[i].style.backgroundColor = colors[main_type];
+                    pokemon_bgs[0].style.backgroundColor = colors[main_type];
                 } else {
-                    pokemon_bgs[i].style.backgroundColor = colors[main_type];
+                    pokemon_bgs[0].style.backgroundColor = colors[main_type];
                 }
             }
 
-            var stat_name = document.getElementsByClassName('stat-name');
+            var stat_names = document.getElementsByClassName('stat-name');
             var stat_number = document.getElementsByClassName('stat-number');
-            for (var i = 0; i < stat_name.length; i++) {
-                console.log(stat_name[i].innerHTML);
-                // var main_type = pokemon_types[i].innerHTML;
-                // if (main_type.includes(",")) {
-                //     main_type = main_type.substring(0, main_type.indexOf(", "));
-                //     pokemon_bgs[i].style.backgroundColor = colors[main_type];
-                // } else {
-                //     pokemon_bgs[i].style.backgroundColor = colors[main_type];
-                // }
+            for (var i = 0; i < stat_names.length; i++) {
+                console.log(stat_names[i].innerHTML);
+                var stat_name = stat_names[i].innerHTML;
+                console.log(stat_colors[stat_name]);
+                stat_number[i].style.color = stat_colors[stat_name];
             }
-            // console.log(pokemon_type);
+        }
+    } else if ((window.location.pathname).includes("pokemon")) {
+        window.onload = function () {
+            // var pokemon_type = document.getElementsByClassName('pokemon-type')[0].innerHTML;
+            var pokemon_types = document.getElementsByClassName('pokemon-type');
+            var pokemon_bgs = document.getElementsByClassName('pokemon');
 
+            function setColors() {
+                for (var i = 0; i < pokemon_types.length; i++) {
+                    // console.log(pokemon_types[i].innerHTML);
+                    var main_type = pokemon_types[i].innerHTML;
+                    if (main_type.includes(",")) {
+                        main_type = main_type.substring(0, main_type.indexOf(", "));
+                        pokemon_bgs[i].style.backgroundColor = colors[main_type];
+                    } else {
+                        pokemon_bgs[i].style.backgroundColor = colors[main_type];
+                    }
+                }
+            }
+            setColors();
             // Pagination
             var pageNo = document.getElementById('pageNo').value;
             var noOfPokemon = document.getElementById('noOfPokemon').value;
@@ -109,14 +124,6 @@ jQuery(document).ready(function () {
                 nextBtn.disabled = true;
             }
 
-            window.onload = function () {
-                var container = document.getElementsByClassName("loading-process")[0];
-
-                $('#loader').addClass('hidden');
-                container.style.display = 'block';
-                alert("check");
-
-            };
         };
 
     } else if (window.location.pathname == '/') {

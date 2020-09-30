@@ -364,18 +364,23 @@ form.checkout.woocommerce-checkout {
   font-size: 0.8em;
   padding: 5px 10px;
 }
-#pokemon-body .pokemon-buttons {
+#pokemon-body .pokemon-pagination {
   margin: 1rem auto auto auto;
   display: flex;
   justify-content: space-between;
 }
-#pokemon-body .pokemon-buttons button {
-  width: 12rem;
+#pokemon-body .pokemon-pagination p, #pokemon-body .pokemon-pagination a {
+  min-width: 3em;
+  text-align: center;
+  margin: auto;
 }
-#pokemon-body .pokemon-buttons button.pokemon-previous {
+#pokemon-body .pokemon-pagination p.curr-page {
+  font-size: 1.1rem;
+}
+#pokemon-body .pokemon-pagination a.pokemon-previous {
   margin: auto auto auto 1rem;
 }
-#pokemon-body .pokemon-buttons button.pokemon-next {
+#pokemon-body .pokemon-pagination a.pokemon-next {
   margin: auto 1rem auto auto;
 }
 
@@ -449,35 +454,35 @@ form.checkout.woocommerce-checkout {
   display: inline-block;
   transform: translateY(-0.6rem) !important;
   font-size: 1.6rem;
+  font-weight: 500;
 }
 
 /* Start of loading gif */
 #loader {
   position: absolute;
-  top: 50%;
   left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  opacity: 1;
+  transition: all 0.8s ease-in-out !important;
 }
 
 /*Hidden class for adding and removing*/
-.lds-dual-ring.hidden {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
-  display: none;
+.hidden {
+  opacity: 0 !important;
+  z-index: -1 !important;
 }
 
 /*Add an overlay to the entire page blocking any further presses to buttons or other elements.*/
 .overlay {
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0);
+  width: 100% !important;
+  height: 100vh !important;
+  background: white;
   z-index: 999;
   opacity: 1;
-  transition: all 0.5s;
+  transition: all 2s ease-in-out !important;
 }
 
 /*Spinner Styles*/

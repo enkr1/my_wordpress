@@ -1,0 +1,6 @@
+2020-09-30T06:13:09+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 155
+
+2020-09-30T06:13:37+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 106954768 bytes) in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 165
+
+2020-09-30T06:15:14+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 123731992 bytes) in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 165
+

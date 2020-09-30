@@ -81,48 +81,64 @@ class PokemonPlugin
     {
         // First ini
         $displayPokemon = 10; // The number of pokemon per page
-        $noOfPokemon = $displayPokemon; // Current total number of pokemon
+        $maxNumber = 893; // The maximum number of pokemons in the storgae
+        $noOfPokemon = $displayPokemon; // Current total number of pokemon displayed
+        $startFrom = 1; // Starting ID
         $pageNo = 1;
         $prevPage = 0;
         $nextPage = $pageNo + 1;
-        $startFrom = 1; 
+        $isMaxRange = FALSE;
+        $pagination = ''; // html
+        $paginationNo = ceil($maxNumber / $displayPokemon);
+        $paginationLength = 10; // use odd number
+        $startOfPagination = 1;
+        $pageCtrl = 6; // Position of the number in $paginationLength (place)
 
         $data = "<div id='poke_container' class='poke-container'>";
 
         if (isset($_GET['pageNo']) && $_GET['pageNo'] > 1) {
-            //It will return true if the $variable is defined. if the variable is not defined it will return false
             $pageNo = $_GET['pageNo'];
             $startFrom = (($displayPokemon * $pageNo) - $displayPokemon) + $startFrom;
-            $displayPokemon = ($displayPokemon * $pageNo);
+            $noOfPokemon = ($displayPokemon * $pageNo);
             $prevPage = $pageNo - 1;
             $nextPage = $pageNo + 1;
         }
 
-        // $startFrom is ID 
-        for ($startFrom; $startFrom <= $displayPokemon; $startFrom++) { // Maximum number is 893
+        $userInput = "";
+
+        if (isset($_GET['q'])) {
+            $userInput = $_GET['q'];
+            echo "defined";
+        } else {
+            echo "null";
+        }
+
+        for ($startFrom; $startFrom <= $noOfPokemon; $startFrom++) { // Maximum number is 893
             $api = curl_init("https://pokeapi.co/api/v2/pokemon/" . $startFrom);
             curl_setopt($api, CURLOPT_RETURNTRANSFER, true);
             $response = curl_exec($api);
             curl_close($api);
             $pokemon = json_decode($response);
 
-            $name = ucfirst($pokemon->name);
-            $number = str_pad($startFrom, 3, "0", STR_PAD_LEFT);
-            $types = "";
-            for ($i = 0; $i < count($pokemon->types); $i++) {
-                if ($i != 0) {
-                    $types .= ', ' . ucfirst($pokemon->types[$i]->type->name);
-                } else {
-                    $types .= ucfirst($pokemon->types[$i]->type->name);
-                }
-            }
+            if (isset($pokemon) && $isMaxRange != TRUE && !isset($userInput)) { // exists
+                $name = ucfirst($pokemon->name);
+                $number = str_pad($startFrom, 3, "0", STR_PAD_LEFT);
+                $types = "";
 
-            $data .= "
+                for ($i = 0; $i < count($pokemon->types); $i++) {
+                    if ($i != 0) {
+                        $types .= ', ' . ucfirst($pokemon->types[$i]->type->name);
+                    } else {
+                        $types .= ucfirst($pokemon->types[$i]->type->name);
+                    }
+                }
+
+                $data .= "
                 <a href='/pokemon-single/?id=$startFrom'>
                     <div class='pokemon'>
                         <span class='number'>ID: $number</span>
                         <div class='img-container'>
-                            <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/$startFrom.gif' alt='$pokemon->name' />
+                            <img src='https://assets.pokemon.com/assets/cms2/img/pokedex/full/$number.png' alt='$pokemon->name' />
                         </div>
                         <div class='info'>
                             <h3 class='name'>$name</h3>
@@ -131,7 +147,66 @@ class PokemonPlugin
                     </div>
                 </a>
             ";
-            $noOfPokemon = $startFrom; // Reset the last ID or total number
+            } else if (isset($pokemon) && $isMaxRange != TRUE && isset($userInput) && strpos(($pokemon->name), $userInput)) {
+                // Do again exactly the same thing
+                $name = ucfirst($pokemon->name);
+                $number = str_pad($startFrom, 3, "0", STR_PAD_LEFT);
+                $types = "";
+
+                for ($i = 0; $i < count($pokemon->types); $i++) {
+                    if ($i != 0) {
+                        $types .= ', ' . ucfirst($pokemon->types[$i]->type->name);
+                    } else {
+                        $types .= ucfirst($pokemon->types[$i]->type->name);
+                    }
+                }
+
+                $data .= "
+                <a href='/pokemon-single/?id=$startFrom'>
+                    <div class='pokemon'>
+                        <span class='number'>ID: $number</span>
+                        <div class='img-container'>
+                            <img src='https://assets.pokemon.com/assets/cms2/img/pokedex/full/$number.png' alt='$pokemon->name' />
+                        </div>
+                        <div class='info'>
+                            <h3 class='name'>$name</h3>
+                            <small class='type'>Type(s): <span class='pokemon-type'>$types</span></small>
+                        </div>
+                    </div>
+                </a>
+            ";
+            } else if ($isMaxRange == FALSE) {
+                echo "There is no more pokemon..";
+            }
+
+            // $noOfPokemon = $startFrom; // Reset the last ID or total number
+
+            if ($startFrom >= $maxNumber) { // the current max
+                $isMaxRange = TRUE;
+            }
+        }
+
+        // Pagination
+        if ($pageNo > $pageCtrl) { // custom position of the number (p)
+            $pagination .= "<p class='dot'>...</p>";
+            $startOfPagination = (($pageNo - $pageCtrl) + 1);
+            // echo (($pageNo - 6) + 1);
+        }
+        if ($pageNo > ($paginationNo - ($paginationLength - $pageCtrl))) {
+            $startOfPagination = $paginationNo - $paginationLength + 1;
+        }
+        // echo ($paginationNo - ($paginationLength - 6));
+        for ($i = 0; $i < $paginationLength; $i++) {
+            $setPage = $i + $startOfPagination;
+            if ($setPage == $pageNo) { // Current page 
+                $pagination .= "<p class='pages curr-page'>" . $setPage . "</p>";
+            } else {
+                $pagination .= "<a href='/pokemon/?pageNo=$setPage' class='pages'>" . $setPage . "</a>";
+            }
+        }
+        // Add '...'
+        if ($pageNo < ($paginationNo - ($paginationLength - $pageCtrl))) {
+            $pagination .= "<p class='dot'>...</p>";
         }
 
         return $data .
@@ -139,8 +214,8 @@ class PokemonPlugin
         </div>
         <input type='hidden' id='pageNo' name='pageNo' value='$pageNo'>
         <input type='hidden' id='noOfPokemon' name='noOfPokemon' value='$noOfPokemon'>
-        <div class='pokemon-buttons'>
-            <a href='/pokemon/?pageNo=$prevPage'><button class='pokemon-previous' id='pokemon-previous'>PREVIOUS</button></a><a href='/pokemon/?pageNo=$nextPage'><button class='pokemon-next' id='pokemon-next'>NEXT</button></a>
+        <div class='pokemon-pagination'>
+            <a href='/pokemon/?pageNo=$prevPage' class='pokemon-previous' id='pokemon-previous'>PREVIOUS</a>$pagination<a href='/pokemon/?pageNo=$nextPage' class='pokemon-next' id='pokemon-next'>NEXT</a>
         </div>";
     }
 
@@ -150,6 +225,7 @@ class PokemonPlugin
 
         $data = "<div id='poke_container' class='poke-container poke-single-container'>";
         $api = curl_init("https://pokeapi.co/api/v2/pokemon/" . $id);
+        // $api = curl_init("https://assets.pokemon.com/assets/cms2/img/pokedex/full/$id.png");
         curl_setopt($api, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($api);
         curl_close($api);
@@ -175,13 +251,12 @@ class PokemonPlugin
                 <span class='number'>ID: $number</span>
                 <div class='img-container'>
                     <img src='https://pokeres.bastionbot.org/images/pokemon/$id.png' alt='$pokemon->name' />
-                    <img class='pokemon-img-hover' src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/$id.svg' alt='$pokemon->name'/>
+                    <img class='pokemon-img-hover' src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/$number.svg' alt='$pokemon->name'/>
                 </div>
                 <div class='info'>
                     <h1 class='name'>$name</h1>
                     <small class='type'>Type(s): <span class='pokemon-type'>$types</span></small><br>
                     <small class='weight'>Weight: <span class='pokemon-weight'>$pokemon->weight</span></small><br>
-                    <small class='type'>Type: <span class='pokemon-type'>$types</span></small>
                     <div class='pokemon-stats'>$stats</div>
                 </div>
             </div>";
