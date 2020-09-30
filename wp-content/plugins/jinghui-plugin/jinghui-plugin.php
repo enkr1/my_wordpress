@@ -89,6 +89,7 @@ class JingHuiPlugin
             'hierarchical' => false,
             'menu_icon' => 'dashicons-food',
         );
+        
         register_post_type('recipes', $args);
     }
 

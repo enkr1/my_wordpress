@@ -7,19 +7,22 @@ header.entry-header.ast-no-thumbnail {
     border-bottom: none;
 }
 
-// div#primary {
-//     background-color: $theme-light-transparent;
-// }
-
 div#secondary {
     padding: 0 3% !important;
 }
 
 // End of Blog page
 
+.ast-article-single {
+    padding-left: 2rem;
+}
+input#submit {
+    -webkit-box-shadow: $theme-neumorphism;
+    -moz-box-shadow: $theme-neumorphism;
+    box-shadow: $theme-neumorphism;
+}
 button {
-    color: red;
-    -webkit-box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.3);
-    -moz-box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.3);
-    box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.3);
+    -webkit-box-shadow: $theme-neumorphism;
+    -moz-box-shadow: $theme-neumorphism;
+    box-shadow: $theme-neumorphism;
 }

@@ -1,0 +1,10 @@
+2020-09-29T06:29:14+00:00 CRITICAL Cannot redeclare my_theme_enqueue_styles() (previously declared in /var/www/html/wp-content/plugins/pokemon/pokemon.php:67) in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 65
+
+2020-09-29T06:30:05+00:00 CRITICAL Cannot redeclare my_plugin_enqueue_styles() (previously declared in /var/www/html/wp-content/plugins/pokemon/pokemon.php:67) in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 65
+
+2020-09-29T06:30:06+00:00 CRITICAL Cannot redeclare my_plugin_enqueue_styles() (previously declared in /var/www/html/wp-content/plugins/pokemon/pokemon.php:67) in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 65
+
+2020-09-29T06:30:08+00:00 CRITICAL Cannot redeclare my_plugin_enqueue_styles() (previously declared in /var/www/html/wp-content/plugins/pokemon/pokemon.php:67) in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 65
+
+2020-09-29T06:30:08+00:00 CRITICAL Cannot redeclare my_plugin_enqueue_styles() (previously declared in /var/www/html/wp-content/plugins/pokemon/pokemon.php:67) in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 65
+

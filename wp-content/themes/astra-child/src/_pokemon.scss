@@ -1,0 +1,176 @@
+// Start of Pokemon archive
+#pokemon-body {
+    padding: 12rem 0;
+
+    .poke-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: space-between;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 1200px;
+
+        a {
+            min-width: 20%;
+
+            .pokemon {
+                border-radius: .4rem;
+                box-shadow: $dark-neumorphism;
+                margin: 10px;
+                padding: 20px;
+                text-align: center;
+
+                .img-container {
+                    background-color: rgba(255, 255, 255, 0.6);
+                    border-radius: 50%;
+                    width: 120px;
+                    height: 120px;
+                    text-align: center;
+                    margin: 1rem auto;
+
+                    img {
+                        width: inherit;
+                        height: inherit;
+                        margin: auto;
+                        max-width: 90%;
+                    }
+                }
+
+                .info {
+                    margin: 1.8rem auto 0 auto;
+
+                    .name {
+                        margin: 15px 0 7px;
+                        letter-spacing: 1px;
+                    }
+                }
+
+                .number {
+                    background-color: rgba(255, 255, 255, 0.6);
+                    border-radius: 10px;
+                    font-size: 0.8em;
+                    padding: 5px 10px;
+                }
+            }
+        }
+    }
+
+    .pokemon-buttons {
+        margin: 1rem auto auto auto;
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            width: 12rem;
+
+            &.pokemon-previous {
+                margin: auto auto auto 1rem;
+            }
+
+            &.pokemon-next {
+                margin: auto 1rem auto auto;
+            }
+        }
+    }
+
+}
+
+// End of Pokemon archive
+
+
+// Start of Pokemon single
+.poke-single-container {}
+
+.pokemon-single {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    border-radius: .6rem !important;
+    box-shadow: $dark-neumorphism !important;
+    text-align: left !important;
+    min-width: 100% !important;
+    padding: 3rem 2rem;
+
+    .number {
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: .6rem !important;
+        font-size: 0.8em !important;
+        height: fit-content !important;
+        padding: .2rem .6rem;
+    }
+
+    .img-container {
+        background-color: rgba(255, 255, 255, 0.4) !important;
+        border-radius: 50%;
+        width: 26rem !important;
+        height: 26rem !important;
+        margin: auto !important;
+
+        img {
+            transition: all .5s ease-in-out;
+            width: inherit;
+            height: inherit;
+            margin: auto;
+
+            &.pokemon-img-hover {
+                // position: absolute;
+
+                // transform: scale(2);
+            }
+
+            &:last-child {
+                display: none;
+            }
+
+
+        }
+
+        &:hover img:last-child {
+            display: block;
+        }
+
+        &:hover img:first-child {
+            display: none;
+        }
+    }
+
+    .info {
+        margin: 20px auto;
+
+        .name {
+            margin: 15px 0 7px;
+            letter-spacing: 1px;
+        }
+
+        .pokemon-stats {
+            margin: 1rem 0 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            background-color: $theme-light-transparent;
+            border-radius: 1rem;
+
+            .single-stat {
+                display: flex;
+                flex-direction: column;
+                min-width: 33%;
+                text-align: center;
+                padding: 1rem 0 0 .6rem;
+
+                small {
+                    color: rgb(80, 80, 80);
+                    font-style: italic;
+                }
+
+                span {
+                    display: inline-block;
+                    transform: translateY(-.6rem) !important;
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }
+
+}
+
+
+// End of Pokemon single

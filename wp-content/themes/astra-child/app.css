@@ -2,7 +2,7 @@
   position: fixed;
   width: 100vw;
   transition: all 0.5s ease-in-out;
-  box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.5);
+  box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.3);
 }
 .main-header-bar .main-navigation a {
   font-size: 0.9rem;
@@ -34,7 +34,7 @@ body {
 
 main#main {
   transition: all 0.5s ease-in-out;
-  padding: 0 4% 0 8%;
+  padding: 0 4%;
   margin: 4rem 0 4rem 0;
 }
 
@@ -115,8 +115,15 @@ div#secondary {
   padding: 0 3% !important;
 }
 
+.ast-article-single {
+  padding-left: 2rem;
+}
+
+input#submit {
+  box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.3);
+}
+
 button {
-  color: red;
   box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.3);
 }
 
@@ -308,3 +315,206 @@ form.checkout.woocommerce-checkout {
      object-fit: cover;
   margin-right: 5rem;
 }
+
+#pokemon-body {
+  padding: 12rem 0;
+}
+#pokemon-body .poke-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-between;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+#pokemon-body .poke-container a {
+  min-width: 20%;
+}
+#pokemon-body .poke-container a .pokemon {
+  border-radius: 0.4rem;
+  box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+}
+#pokemon-body .poke-container a .pokemon .img-container {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  text-align: center;
+  margin: 1rem auto;
+}
+#pokemon-body .poke-container a .pokemon .img-container img {
+  width: inherit;
+  height: inherit;
+  margin: auto;
+  max-width: 90%;
+}
+#pokemon-body .poke-container a .pokemon .info {
+  margin: 1.8rem auto 0 auto;
+}
+#pokemon-body .poke-container a .pokemon .info .name {
+  margin: 15px 0 7px;
+  letter-spacing: 1px;
+}
+#pokemon-body .poke-container a .pokemon .number {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  font-size: 0.8em;
+  padding: 5px 10px;
+}
+#pokemon-body .pokemon-buttons {
+  margin: 1rem auto auto auto;
+  display: flex;
+  justify-content: space-between;
+}
+#pokemon-body .pokemon-buttons button {
+  width: 12rem;
+}
+#pokemon-body .pokemon-buttons button.pokemon-previous {
+  margin: auto auto auto 1rem;
+}
+#pokemon-body .pokemon-buttons button.pokemon-next {
+  margin: auto 1rem auto auto;
+}
+
+.pokemon-single {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  border-radius: 0.6rem !important;
+  box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5) !important;
+  text-align: left !important;
+  min-width: 100% !important;
+  padding: 3rem 2rem;
+}
+.pokemon-single .number {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 0.6rem !important;
+  font-size: 0.8em !important;
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  padding: 0.2rem 0.6rem;
+}
+.pokemon-single .img-container {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+  border-radius: 50%;
+  width: 26rem !important;
+  height: 26rem !important;
+  margin: auto !important;
+}
+.pokemon-single .img-container img {
+  transition: all 0.5s ease-in-out;
+  width: inherit;
+  height: inherit;
+  margin: auto;
+}
+.pokemon-single .img-container img:last-child {
+  display: none;
+}
+.pokemon-single .img-container:hover img:last-child {
+  display: block;
+}
+.pokemon-single .img-container:hover img:first-child {
+  display: none;
+}
+.pokemon-single .info {
+  margin: 20px auto;
+}
+.pokemon-single .info .name {
+  margin: 15px 0 7px;
+  letter-spacing: 1px;
+}
+.pokemon-single .info .pokemon-stats {
+  margin: 1rem 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 1rem;
+}
+.pokemon-single .info .pokemon-stats .single-stat {
+  display: flex;
+  flex-direction: column;
+  min-width: 33%;
+  text-align: center;
+  padding: 1rem 0 0 0.6rem;
+}
+.pokemon-single .info .pokemon-stats .single-stat small {
+  color: #505050;
+  font-style: italic;
+}
+.pokemon-single .info .pokemon-stats .single-stat span {
+  display: inline-block;
+  transform: translateY(-0.6rem) !important;
+  font-size: 1.6rem;
+}
+
+/* Start of loading gif */
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+/*Hidden class for adding and removing*/
+.lds-dual-ring.hidden {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+/*Add an overlay to the entire page blocking any further presses to buttons or other elements.*/
+.overlay {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0);
+  z-index: 999;
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+/*Spinner Styles*/
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 5% auto;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #654ea3 transparent #654ea3 transparent;
+  -webkit-animation: lds-dual-ring 1.2s linear infinite;
+          animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@-webkit-keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* End of loading gif */

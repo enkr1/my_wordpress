@@ -2,9 +2,9 @@
     position: fixed;
     width: 100vw;
     transition: all .5s ease-in-out;
-    -webkit-box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.5);
-    -moz-box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.5);
-    box-shadow: 0px 0px 30px 0px rgba(101, 78, 163, 0.5);
+    -webkit-box-shadow: $theme-neumorphism;
+    -moz-box-shadow: $theme-neumorphism;
+    box-shadow: $theme-neumorphism;
 
     .main-navigation {
         a {

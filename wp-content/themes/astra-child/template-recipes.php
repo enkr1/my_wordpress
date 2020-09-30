@@ -2,7 +2,7 @@
 /* Template Name: Recipes */
 get_header();
 query_posts(array(
-	'posts_per_page' => -1,
+    'posts_per_page' => -1,
     'post_type' => 'recipes'
 )); ?>
 
