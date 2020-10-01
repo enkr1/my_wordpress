@@ -13,6 +13,13 @@
  * @package PokemonPlugin
  */
 
+use Nullix\CryptoJsAes\CryptoJsAes;
+use ParagonIE\Sodium\Crypto;
+
+// use Nullix\CryptoJsAes\CryptoJsAes;
+
+// require  plugins_url(__DIR__) . "./../pokemon/assets/js/CryptoJsAes.php";
+
 // defined( 'ABSPATH' ) || exit;
 if (!defined('ABSPATH')) {
     die;
@@ -93,8 +100,10 @@ class PokemonPlugin
         $paginationLength = 10; // use odd number
         $startOfPagination = 1;
         $pageCtrl = 6; // Position of the number in $paginationLength (place)
+        $data = "";
 
-        $data = "<div id='poke_container' class='poke-container'>";
+        // $data .= "<div id='hintMsg'></div>";
+        $data .= "<div id='poke_container' class='poke-container'>";
 
         if (isset($_GET['pageNo']) && $_GET['pageNo'] > 1) {
             $pageNo = $_GET['pageNo'];
@@ -106,117 +115,168 @@ class PokemonPlugin
 
         $userInput = "";
 
-        if (isset($_GET['q'])) {
-            $userInput = $_GET['q'];
-            echo "defined";
+        if (isset($_GET['encrypt'])) {
+            $userInput = $_GET['encrypt'];
+            $data .= $this->search_pokemons_function($userInput);
         } else {
-            echo "null";
+            for ($startFrom; $startFrom <= $noOfPokemon; $startFrom++) { // Maximum number is 893
+                $api = curl_init("https://pokeapi.co/api/v2/pokemon/" . $startFrom);
+                curl_setopt($api, CURLOPT_RETURNTRANSFER, true);
+                $response = curl_exec($api);
+                curl_close($api);
+                $pokemon = json_decode($response);
+
+                if (isset($pokemon) && $isMaxRange != TRUE) { // exists
+                    $name = ucfirst($pokemon->name);
+                    $number = str_pad($startFrom, 3, "0", STR_PAD_LEFT);
+                    $types = "";
+
+                    for ($i = 0; $i < count($pokemon->types); $i++) {
+                        if ($i != 0) {
+                            $types .= ', ' . ucfirst($pokemon->types[$i]->type->name);
+                        } else {
+                            $types .= ucfirst($pokemon->types[$i]->type->name);
+                        }
+                    }
+
+                    $data .= "
+                    <a href='/pokemon-single/?id=$startFrom'>
+                        <div class='pokemon'>
+                            <span class='number'>ID: $number</span>
+                            <div class='img-container'>
+                                <img src='https://assets.pokemon.com/assets/cms2/img/pokedex/full/$number.png' alt='$pokemon->name' />
+                            </div>
+                            <div class='info'>
+                                <h3 class='name'>$name</h3>
+                                <small class='type'>Type(s): <span class='pokemon-type'>$types</span></small>
+                            </div>
+                        </div>
+                    </a>";
+                } else if ($isMaxRange == FALSE) {
+                    echo "There is no more pokemon..";
+                }
+
+                if ($startFrom >= $maxNumber) { // the current max
+                    $isMaxRange = TRUE;
+                }
+            } // Pokemons for loop
+
+            // Pagination
+            if ($pageNo > $pageCtrl) { // custom position of the number (p)
+                $pagination .= "<p class='dot'>...</p>";
+                $startOfPagination = (($pageNo - $pageCtrl) + 1);
+                // echo (($pageNo - 6) + 1);
+            }
+            if ($pageNo > ($paginationNo - ($paginationLength - $pageCtrl))) {
+                $startOfPagination = $paginationNo - $paginationLength + 1;
+            }
+            // echo ($paginationNo - ($paginationLength - 6));
+            for ($i = 0; $i < $paginationLength; $i++) {
+                $setPage = $i + $startOfPagination;
+                if ($setPage == $pageNo) { // Current page 
+                    $pagination .= "<p class='pages curr-page'>" . $setPage . "</p>";
+                } else {
+                    $pagination .= "<a href='/pokemon/?pageNo=$setPage' class='pages'>" . $setPage . "</a>";
+                }
+            }
+            // Add '...'
+            if ($pageNo < ($paginationNo - ($paginationLength - $pageCtrl))) {
+                $pagination .= "<p class='dot'>...</p>";
+            }
         }
 
-        for ($startFrom; $startFrom <= $noOfPokemon; $startFrom++) { // Maximum number is 893
-            $api = curl_init("https://pokeapi.co/api/v2/pokemon/" . $startFrom);
+        $data .= "</div>";
+        $data .= "<input type='hidden' id='pageNo' name='pageNo' value='$pageNo'>
+                  <input type='hidden' id='noOfPokemon' name='noOfPokemon' value='$noOfPokemon'>";
+
+        // Add pagination only when user is not searching
+        if (!isset($_GET['encrypt'])) {
+            $data .= "<div class='pokemon-pagination'>
+                    <a href='/pokemon/?pageNo=$prevPage' class='pokemon-previous' id='pokemon-previous'>PREVIOUS</a>$pagination<a href='/pokemon/?pageNo=$nextPage' class='pokemon-next' id='pokemon-next'>NEXT</a>
+                  </div>";
+        }
+        return $data;
+    }
+    function search_pokemons_function($userInput)
+    {
+        $data = "";
+        $decodedInput = base64_decode(urldecode($userInput));
+        $array = explode(",", $decodedInput);
+        $arrayLength = count($array);
+
+        // echo "Original: " . $userInput . PHP_EOL;
+        // $key = hex2bin("0123456789abcdef0123456789abcdef");
+        // $iv =  hex2bin("abcdef9876543210abcdef98  76543210");
+
+        // $decrypted = openssl_decrypt($userInput, 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, $iv);
+        // $decrypted = trim($decrypted);
+        // $decrypted = CryptoJsAes::decrypt($userInput, "123");
+        // $decrypted = CryptoJsAes::decrypt($userInput, "1");
+
+        // $passphrase = "123";
+        // $decrypted = $this->cryptoJsAesEncrypt($passphrase, $userInput);
+
+
+        // echo "Decrypted: " . base64_decode(urldecode($userInput));
+
+
+
+        // $data .= "<div id='displayResponse'>Found $arrayLength result(s).</div>";
+        echo 'Found ' . $arrayLength . ' result(s)';
+
+        foreach ($array as $value) {
+            // echo $value . PHP_EOL;
+            $api = curl_init("https://pokeapi.co/api/v2/pokemon/" . $value);
             curl_setopt($api, CURLOPT_RETURNTRANSFER, true);
             $response = curl_exec($api);
             curl_close($api);
             $pokemon = json_decode($response);
 
-            if (isset($pokemon) && $isMaxRange != TRUE && !isset($userInput)) { // exists
-                $name = ucfirst($pokemon->name);
-                $number = str_pad($startFrom, 3, "0", STR_PAD_LEFT);
-                $types = "";
+            $name = ucfirst($pokemon->name);
+            $number = str_pad($value, 3, "0", STR_PAD_LEFT);
+            $types = "";
 
-                for ($i = 0; $i < count($pokemon->types); $i++) {
-                    if ($i != 0) {
-                        $types .= ', ' . ucfirst($pokemon->types[$i]->type->name);
-                    } else {
-                        $types .= ucfirst($pokemon->types[$i]->type->name);
-                    }
+            for ($i = 0; $i < count($pokemon->types); $i++) {
+                if ($i != 0) {
+                    $types .= ', ' . ucfirst($pokemon->types[$i]->type->name);
+                } else {
+                    $types .= ucfirst($pokemon->types[$i]->type->name);
                 }
-
-                $data .= "
-                <a href='/pokemon-single/?id=$startFrom'>
-                    <div class='pokemon'>
-                        <span class='number'>ID: $number</span>
-                        <div class='img-container'>
-                            <img src='https://assets.pokemon.com/assets/cms2/img/pokedex/full/$number.png' alt='$pokemon->name' />
-                        </div>
-                        <div class='info'>
-                            <h3 class='name'>$name</h3>
-                            <small class='type'>Type(s): <span class='pokemon-type'>$types</span></small>
-                        </div>
-                    </div>
-                </a>
-            ";
-            } else if (isset($pokemon) && $isMaxRange != TRUE && isset($userInput) && strpos(($pokemon->name), $userInput)) {
-                // Do again exactly the same thing
-                $name = ucfirst($pokemon->name);
-                $number = str_pad($startFrom, 3, "0", STR_PAD_LEFT);
-                $types = "";
-
-                for ($i = 0; $i < count($pokemon->types); $i++) {
-                    if ($i != 0) {
-                        $types .= ', ' . ucfirst($pokemon->types[$i]->type->name);
-                    } else {
-                        $types .= ucfirst($pokemon->types[$i]->type->name);
-                    }
-                }
-
-                $data .= "
-                <a href='/pokemon-single/?id=$startFrom'>
-                    <div class='pokemon'>
-                        <span class='number'>ID: $number</span>
-                        <div class='img-container'>
-                            <img src='https://assets.pokemon.com/assets/cms2/img/pokedex/full/$number.png' alt='$pokemon->name' />
-                        </div>
-                        <div class='info'>
-                            <h3 class='name'>$name</h3>
-                            <small class='type'>Type(s): <span class='pokemon-type'>$types</span></small>
-                        </div>
-                    </div>
-                </a>
-            ";
-            } else if ($isMaxRange == FALSE) {
-                echo "There is no more pokemon..";
             }
 
-            // $noOfPokemon = $startFrom; // Reset the last ID or total number
-
-            if ($startFrom >= $maxNumber) { // the current max
-                $isMaxRange = TRUE;
-            }
+            $data .= "
+                    <a href='/pokemon-single/?id=$i'>
+                        <div class='pokemon'>
+                            <span class='number'>ID: $number</span>
+                            <div class='img-container'>
+                                <img src='https://assets.pokemon.com/assets/cms2/img/pokedex/full/$number.png' alt='$pokemon->name' />
+                            </div>
+                            <div class='info'>
+                                <h3 class='name'>$name</h3>
+                                <small class='type'>Type(s): <span class='pokemon-type'>$types</span></small>
+                            </div>
+                        </div>
+                    </a>
+                ";
         }
 
-        // Pagination
-        if ($pageNo > $pageCtrl) { // custom position of the number (p)
-            $pagination .= "<p class='dot'>...</p>";
-            $startOfPagination = (($pageNo - $pageCtrl) + 1);
-            // echo (($pageNo - 6) + 1);
-        }
-        if ($pageNo > ($paginationNo - ($paginationLength - $pageCtrl))) {
-            $startOfPagination = $paginationNo - $paginationLength + 1;
-        }
-        // echo ($paginationNo - ($paginationLength - 6));
-        for ($i = 0; $i < $paginationLength; $i++) {
-            $setPage = $i + $startOfPagination;
-            if ($setPage == $pageNo) { // Current page 
-                $pagination .= "<p class='pages curr-page'>" . $setPage . "</p>";
-            } else {
-                $pagination .= "<a href='/pokemon/?pageNo=$setPage' class='pages'>" . $setPage . "</a>";
-            }
-        }
-        // Add '...'
-        if ($pageNo < ($paginationNo - ($paginationLength - $pageCtrl))) {
-            $pagination .= "<p class='dot'>...</p>";
-        }
+        return $data;
+    }
 
-        return $data .
-            "
-        </div>
-        <input type='hidden' id='pageNo' name='pageNo' value='$pageNo'>
-        <input type='hidden' id='noOfPokemon' name='noOfPokemon' value='$noOfPokemon'>
-        <div class='pokemon-pagination'>
-            <a href='/pokemon/?pageNo=$prevPage' class='pokemon-previous' id='pokemon-previous'>PREVIOUS</a>$pagination<a href='/pokemon/?pageNo=$nextPage' class='pokemon-next' id='pokemon-next'>NEXT</a>
-        </div>";
+    function cryptoJsAesEncrypt($passphrase, $value)
+    {
+        $salt = openssl_random_pseudo_bytes(8);
+        $salted = '';
+        $dx = '';
+        while (strlen($salted) < 48) {
+            $dx = md5($dx . $passphrase . $salt, true);
+            $salted .= $dx;
+        }
+        $key = substr($salted, 0, 32);
+        $iv  = substr($salted, 32, 16);
+        $encrypted_data = openssl_encrypt(json_encode($value), 'aes-256-cbc', $key, true, $iv);
+        $data = array("ct" => base64_encode($encrypted_data), "iv" => bin2hex($iv), "s" => bin2hex($salt));
+        return json_encode($data);
     }
 
     function pokemon_single_function()

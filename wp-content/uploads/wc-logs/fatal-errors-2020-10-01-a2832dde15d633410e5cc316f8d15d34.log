@@ -1,0 +1,186 @@
+2020-10-01T02:00:44+00:00 CRITICAL Uncaught Error: Call to undefined function search_pokemons_function() in /var/www/html/wp-content/plugins/pokemon/pokemon.php:112
+Stack trace:
+#0 /var/www/html/wp-includes/shortcodes.php(343): PokemonPlugin->pokemons_function('', '', 'pokemons')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 /var/www/html/wp-includes/shortcodes.php(218): preg_replace_callback('/\\[(\\[?)(pokemo...', 'do_shortcode_ta...', '[pokemons]')
+#3 /var/www/html/wp-content/plugins/pokemon/templates/template-pokemons.php(79): do_shortcode('[pokemons]')
+#4 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#5 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#6 /var/www/html/index.php(17): require('/var/www/html/w...')
+#7 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 112
+
+2020-10-01T02:25:32+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 196
+
+2020-10-01T02:25:50+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 196
+
+2020-10-01T02:25:51+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 196
+
+2020-10-01T02:28:24+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 196
+
+2020-10-01T02:29:30+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 196
+
+2020-10-01T02:37:04+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:37:35+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:37:35+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:37:36+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 199
+
+2020-10-01T02:37:47+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:39:17+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 199
+
+2020-10-01T02:39:59+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:40:00+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:41:27+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:41:35+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:42:11+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:42:14+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:42:14+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 200
+
+2020-10-01T02:43:59+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:44:00+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:44:11+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 197
+
+2020-10-01T02:45:38+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 198
+
+2020-10-01T04:42:29+00:00 CRITICAL Uncaught Error: Call to undefined function mcrypt_decrypt() in /var/www/html/wp-content/plugins/pokemon/pokemon.php:209
+Stack trace:
+#0 /var/www/html/wp-content/plugins/pokemon/pokemon.php(113): PokemonPlugin->search_pokemons_function('Fr0WkU1DSQ4pekT...')
+#1 /var/www/html/wp-includes/shortcodes.php(343): PokemonPlugin->pokemons_function('', '', 'pokemons')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 /var/www/html/wp-includes/shortcodes.php(218): preg_replace_callback('/\\[(\\[?)(pokemo...', 'do_shortcode_ta...', '[pokemons]')
+#4 /var/www/html/wp-content/plugins/pokemon/templates/template-pokemons.php(99): do_shortcode('[pokemons]')
+#5 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#6 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#7 /var/www/html/index.php(17): require('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 209
+
+2020-10-01T04:47:21+00:00 CRITICAL Uncaught Error: Call to undefined function mcrypt_decrypt() in /var/www/html/wp-content/plugins/pokemon/pokemon.php:209
+Stack trace:
+#0 /var/www/html/wp-content/plugins/pokemon/pokemon.php(113): PokemonPlugin->search_pokemons_function('Fr0WkU1DSQ4pekT...')
+#1 /var/www/html/wp-includes/shortcodes.php(343): PokemonPlugin->pokemons_function('', '', 'pokemons')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 /var/www/html/wp-includes/shortcodes.php(218): preg_replace_callback('/\\[(\\[?)(pokemo...', 'do_shortcode_ta...', '[pokemons]')
+#4 /var/www/html/wp-content/plugins/pokemon/templates/template-pokemons.php(99): do_shortcode('[pokemons]')
+#5 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#6 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#7 /var/www/html/index.php(17): require('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 209
+
+2020-10-01T04:47:37+00:00 CRITICAL Uncaught Error: Call to undefined function mcrypt_decrypt() in /var/www/html/wp-content/plugins/pokemon/pokemon.php:209
+Stack trace:
+#0 /var/www/html/wp-content/plugins/pokemon/pokemon.php(113): PokemonPlugin->search_pokemons_function('Fr0WkU1DSQ4pekT...')
+#1 /var/www/html/wp-includes/shortcodes.php(343): PokemonPlugin->pokemons_function('', '', 'pokemons')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 /var/www/html/wp-includes/shortcodes.php(218): preg_replace_callback('/\\[(\\[?)(pokemo...', 'do_shortcode_ta...', '[pokemons]')
+#4 /var/www/html/wp-content/plugins/pokemon/templates/template-pokemons.php(99): do_shortcode('[pokemons]')
+#5 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#6 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#7 /var/www/html/index.php(17): require('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 209
+
+2020-10-01T06:12:21+00:00 CRITICAL Uncaught Error: Class 'Nullix\CryptoJsAes\CryptoJsAes' not found in /var/www/html/wp-content/plugins/pokemon/pokemon.php:206
+Stack trace:
+#0 /var/www/html/wp-content/plugins/pokemon/pokemon.php(116): PokemonPlugin->search_pokemons_function('U2FsdGVkX1 dL4w...')
+#1 /var/www/html/wp-includes/shortcodes.php(343): PokemonPlugin->pokemons_function('', '', 'pokemons')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 /var/www/html/wp-includes/shortcodes.php(218): preg_replace_callback('/\\[(\\[?)(pokemo...', 'do_shortcode_ta...', '[pokemons]')
+#4 /var/www/html/wp-content/plugins/pokemon/templates/template-pokemons.php(99): do_shortcode('[pokemons]')
+#5 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#6 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#7 /var/www/html/index.php(17): require('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 206
+
+2020-10-01T06:40:30+00:00 CRITICAL Uncaught Error: Class 'CryptoJsAes' not found in /var/www/html/wp-content/plugins/pokemon/pokemon.php:210
+Stack trace:
+#0 /var/www/html/wp-content/plugins/pokemon/pokemon.php(117): PokemonPlugin->search_pokemons_function('U2FsdGVkX192pE5...')
+#1 /var/www/html/wp-includes/shortcodes.php(343): PokemonPlugin->pokemons_function('', '', 'pokemons')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 /var/www/html/wp-includes/shortcodes.php(218): preg_replace_callback('/\\[(\\[?)(pokemo...', 'do_shortcode_ta...', '[pokemons]')
+#4 /var/www/html/wp-content/plugins/pokemon/templates/template-pokemons.php(100): do_shortcode('[pokemons]')
+#5 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#6 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#7 /var/www/html/index.php(17): require('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 210
+
+2020-10-01T06:42:48+00:00 CRITICAL Uncaught Error: Class 'Nullix\CryptoJsAes\CryptoJsAes' not found in /var/www/html/wp-content/plugins/pokemon/pokemon.php:214
+Stack trace:
+#0 /var/www/html/wp-content/plugins/pokemon/pokemon.php(120): PokemonPlugin->search_pokemons_function('U2FsdGVkX1/YuUu...')
+#1 /var/www/html/wp-includes/shortcodes.php(343): PokemonPlugin->pokemons_function('', '', 'pokemons')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 /var/www/html/wp-includes/shortcodes.php(218): preg_replace_callback('/\\[(\\[?)(pokemo...', 'do_shortcode_ta...', '[pokemons]')
+#4 /var/www/html/wp-content/plugins/pokemon/templates/template-pokemons.php(100): do_shortcode('[pokemons]')
+#5 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#6 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#7 /var/www/html/index.php(17): require('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 214
+
+2020-10-01T06:57:02+00:00 CRITICAL Uncaught Error: Call to undefined function mcrypt_encrypt() in /var/www/html/wp-content/plugins/pokemon/pokemon.php:221
+Stack trace:
+#0 /var/www/html/wp-content/plugins/pokemon/pokemon.php(120): PokemonPlugin->search_pokemons_function('{\\"ct\\":\\"p25aC...')
+#1 /var/www/html/wp-includes/shortcodes.php(343): PokemonPlugin->pokemons_function('', '', 'pokemons')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 /var/www/html/wp-includes/shortcodes.php(218): preg_replace_callback('/\\[(\\[?)(pokemo...', 'do_shortcode_ta...', '[pokemons]')
+#4 /var/www/html/wp-content/plugins/pokemon/templates/template-pokemons.php(103): do_shortcode('[pokemons]')
+#5 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#6 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#7 /var/www/html/index.php(17): require('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 221
+
+2020-10-01T06:58:14+00:00 CRITICAL Uncaught Error: Call to undefined function mcrypt_encrypt() in /var/www/html/wp-content/plugins/pokemon/pokemon.php:221
+Stack trace:
+#0 /var/www/html/wp-content/plugins/pokemon/pokemon.php(120): PokemonPlugin->search_pokemons_function('yMjizJCGQh jxX4...')
+#1 /var/www/html/wp-includes/shortcodes.php(343): PokemonPlugin->pokemons_function('', '', 'pokemons')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 /var/www/html/wp-includes/shortcodes.php(218): preg_replace_callback('/\\[(\\[?)(pokemo...', 'do_shortcode_ta...', '[pokemons]')
+#4 /var/www/html/wp-content/plugins/pokemon/templates/template-pokemons.php(100): do_shortcode('[pokemons]')
+#5 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#6 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#7 /var/www/html/index.php(17): require('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 221
+
+2020-10-01T07:14:57+00:00 CRITICAL Uncaught Error: Class 'Nullix\CryptoJsAes\CryptoJsAes' not found in /var/www/html/wp-content/plugins/pokemon/pokemon.php:213
+Stack trace:
+#0 /var/www/html/wp-content/plugins/pokemon/pokemon.php(120): PokemonPlugin->search_pokemons_function('7,31,155,156,19...')
+#1 /var/www/html/wp-includes/shortcodes.php(343): PokemonPlugin->pokemons_function('', '', 'pokemons')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 /var/www/html/wp-includes/shortcodes.php(218): preg_replace_callback('/\\[(\\[?)(pokemo...', 'do_shortcode_ta...', '[pokemons]')
+#4 /var/www/html/wp-content/plugins/pokemon/templates/template-pokemons.php(100): do_shortcode('[pokemons]')
+#5 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#6 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#7 /var/www/html/index.php(17): require('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 213
+
+2020-10-01T07:15:14+00:00 CRITICAL Uncaught Error: Class 'Nullix\CryptoJsAes\CryptoJsAes' not found in /var/www/html/wp-content/plugins/pokemon/pokemon.php:213
+Stack trace:
+#0 /var/www/html/wp-content/plugins/pokemon/pokemon.php(120): PokemonPlugin->search_pokemons_function('U2FsdGVkX1/FiDI...')
+#1 /var/www/html/wp-includes/shortcodes.php(343): PokemonPlugin->pokemons_function('', '', 'pokemons')
+#2 [internal function]: do_shortcode_tag(Array)
+#3 /var/www/html/wp-includes/shortcodes.php(218): preg_replace_callback('/\\[(\\[?)(pokemo...', 'do_shortcode_ta...', '[pokemons]')
+#4 /var/www/html/wp-content/plugins/pokemon/templates/template-pokemons.php(100): do_shortcode('[pokemons]')
+#5 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#6 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#7 /var/www/html/index.php(17): require('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 213
+
