@@ -15,6 +15,7 @@
 
 use Nullix\CryptoJsAes\CryptoJsAes;
 use ParagonIE\Sodium\Crypto;
+use Pokemon\Pokemon;
 
 // use Nullix\CryptoJsAes\CryptoJsAes;
 
@@ -161,7 +162,7 @@ class PokemonPlugin
                 }
             } // Pokemons for loop
 
-            // Pagination
+            // Start of Pagination
             if ($pageNo > $pageCtrl) { // custom position of the number (p)
                 $pagination .= "<p class='dot'>...</p>";
                 $startOfPagination = (($pageNo - $pageCtrl) + 1);
@@ -183,6 +184,7 @@ class PokemonPlugin
             if ($pageNo < ($paginationNo - ($paginationLength - $pageCtrl))) {
                 $pagination .= "<p class='dot'>...</p>";
             }
+            // End of Pagination
         }
 
         $data .= "</div>";
@@ -197,29 +199,13 @@ class PokemonPlugin
         }
         return $data;
     }
+
     function search_pokemons_function($userInput)
     {
         $data = "";
-        $decodedInput = base64_decode(urldecode($userInput));
+        $decodedInput = base64_decode(urldecode($userInput)); // Decode
         $array = explode(",", $decodedInput);
         $arrayLength = count($array);
-
-        // echo "Original: " . $userInput . PHP_EOL;
-        // $key = hex2bin("0123456789abcdef0123456789abcdef");
-        // $iv =  hex2bin("abcdef9876543210abcdef98  76543210");
-
-        // $decrypted = openssl_decrypt($userInput, 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, $iv);
-        // $decrypted = trim($decrypted);
-        // $decrypted = CryptoJsAes::decrypt($userInput, "123");
-        // $decrypted = CryptoJsAes::decrypt($userInput, "1");
-
-        // $passphrase = "123";
-        // $decrypted = $this->cryptoJsAesEncrypt($passphrase, $userInput);
-
-
-        // echo "Decrypted: " . base64_decode(urldecode($userInput));
-
-
 
         // $data .= "<div id='displayResponse'>Found $arrayLength result(s).</div>";
         echo 'Found ' . $arrayLength . ' result(s)';
@@ -245,7 +231,7 @@ class PokemonPlugin
             }
 
             $data .= "
-                    <a href='/pokemon-single/?id=$i'>
+                    <a href='/pokemon-single/?id=$value'>
                         <div class='pokemon'>
                             <span class='number'>ID: $number</span>
                             <div class='img-container'>
@@ -263,42 +249,54 @@ class PokemonPlugin
         return $data;
     }
 
-    function cryptoJsAesEncrypt($passphrase, $value)
-    {
-        $salt = openssl_random_pseudo_bytes(8);
-        $salted = '';
-        $dx = '';
-        while (strlen($salted) < 48) {
-            $dx = md5($dx . $passphrase . $salt, true);
-            $salted .= $dx;
-        }
-        $key = substr($salted, 0, 32);
-        $iv  = substr($salted, 32, 16);
-        $encrypted_data = openssl_encrypt(json_encode($value), 'aes-256-cbc', $key, true, $iv);
-        $data = array("ct" => base64_encode($encrypted_data), "iv" => bin2hex($iv), "s" => bin2hex($salt));
-        return json_encode($data);
-    }
-
     function pokemon_single_function()
     {
         $id = $_GET['id'];
 
         $data = "<div id='poke_container' class='poke-container poke-single-container'>";
-        $api = curl_init("https://pokeapi.co/api/v2/pokemon/" . $id);
-        // $api = curl_init("https://assets.pokemon.com/assets/cms2/img/pokedex/full/$id.png");
-        curl_setopt($api, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($api);
-        curl_close($api);
-        $pokemon = json_decode($response);
+        $api1 = curl_init("https://pokeapi.co/api/v2/pokemon/" . $id);
+        curl_setopt($api1, CURLOPT_RETURNTRANSFER, true);
+        $response1 = curl_exec($api1);
+        curl_close($api1);
+        $pokemon = json_decode($response1);
+
+        // Cards
+        $api2 = curl_init("https://api.pokemontcg.io/v1/cards?name=" . $pokemon->name);
+        curl_setopt($api2, CURLOPT_RETURNTRANSFER, true);
+        $response2 = curl_exec($api2);
+        curl_close($api2);
+        $cards = json_decode($response2);
+        $displayCards = "<div class='cards-slider'>";
+
+        // echo count($cards->cards);
+
+        for ($i = 0; $i < count($cards->cards); $i++) {
+            $imageUrl = $cards->cards[$i]->imageUrl; //HiRes
+            if (@getimagesize($imageUrl)) {
+                $displayCards .=  "<img class='pokemon-card' src='$imageUrl' alt= '$pokemon->name' />";
+            }
+        }
+
+        // for ($i = 0; $i < 1; $i++) {
+        //     $imageUrl = $cards->cards[0]->imageUrlHiRes;
+        //     if (@getimagesize($imageUrl)) {
+        //         $displayCards .=  "<img class='pokemon-card' src='$imageUrl' alt= '$pokemon->name' />";
+        //     }
+        // }
+
+        $displayCards .= "</div>";
+
+
 
         $name = ucfirst($pokemon->name);
         $number = str_pad($id, 3, "0", STR_PAD_LEFT);
         $types = "";
         for ($i = 0; $i < count($pokemon->types); $i++) {
+            $type = $pokemon->types[$i]->type->name;
             if ($i != 0) {
-                $types .= ', ' . ucfirst($pokemon->types[$i]->type->name);
+                $types .= ', ' . "<i class='energy icon-$type'></i><span>" . ucfirst($pokemon->types[$i]->type->name) . "</span>";
             } else {
-                $types .= ucfirst($pokemon->types[$i]->type->name);
+                $types .= "<i class='energy icon-$type'></i><span>" . ucfirst($pokemon->types[$i]->type->name) . "</span>";
             }
         }
         $stats = "";
@@ -311,14 +309,17 @@ class PokemonPlugin
                 <span class='number'>ID: $number</span>
                 <div class='img-container'>
                     <img src='https://pokeres.bastionbot.org/images/pokemon/$id.png' alt='$pokemon->name' />
-                    <img class='pokemon-img-hover' src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/$number.svg' alt='$pokemon->name'/>
                 </div>
                 <div class='info'>
                     <h1 class='name'>$name</h1>
-                    <small class='type'>Type(s): <span class='pokemon-type'>$types</span></small><br>
+                    <small class='type pokemon-type'>Type(s): $types</small><br>
                     <small class='weight'>Weight: <span class='pokemon-weight'>$pokemon->weight</span></small><br>
+
+                    <div>ADD MORE DETAILS</div>
                     <div class='pokemon-stats'>$stats</div>
                 </div>
+                <h3>$name's card(s): </h3>
+                $displayCards
             </div>";
 
         return $data . "</div>";

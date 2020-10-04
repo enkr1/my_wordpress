@@ -1,6 +1,6 @@
 // Start of Pokemon archive
 #pokemon-body {
-    padding: 12rem 0;
+    padding: 10rem 0;
 
     .searchForm {
         display: flex;
@@ -9,6 +9,11 @@
         input {
             height: 2.6rem;
             margin: auto 0;
+            -webkit-box-shadow: $theme-light-neumorphism;
+            -moz-box-shadow: $theme-light-neumorphism;
+            box-shadow: $theme-light-neumorphism;
+            border-radius: 2rem;
+            padding-left: 1.1rem;
         }
 
         #hintMsg {
@@ -27,12 +32,13 @@
         display: flex;
         flex-wrap: wrap;
         align-items: space-between;
-        justify-content: center;
+        justify-content: left;
         margin: 0 auto;
         max-width: 1200px;
 
         a {
             min-width: 20%;
+            max-width: 20%;
 
             .pokemon {
                 border-radius: .4rem;
@@ -44,17 +50,31 @@
                 .img-container {
                     background-color: rgba(255, 255, 255, 0.6);
                     border-radius: 50%;
-                    width: 120px;
-                    height: 120px;
+                    width: 10rem;
+                    height: 10rem;
                     text-align: center;
                     margin: 1rem auto;
+                    -webkit-box-shadow: 0px 0px 150px 0px rgba(255, 255, 255, 1);
+                    -moz-box-shadow: 0px 0px 150px 0px rgba(255, 255, 255, 1);
+                    box-shadow: 0px 0px 150px 0px rgba(255, 255, 255, 1);
 
                     img {
-                        width: inherit;
-                        height: inherit;
+                        // width: inherit;
+                        // height: inherit;
                         margin: auto;
-                        max-width: 90%;
+                        // max-width: 90%;
+                        transform: scale(1.2);
                     }
+
+                    // &::after {
+                    //     background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif");
+                    //     background-position: center;
+                    //     background-size: 180%;
+                    //     mix-blend-mode: color-dodge;
+                    //     opacity: 1;
+                    //     z-index: 2;
+                    //     animation: holoSparkle 15s ease infinite;
+                    // }
                 }
 
                 .info {
@@ -72,7 +92,10 @@
                     font-size: 0.8em;
                     padding: 5px 10px;
                 }
+
+
             }
+
         }
     }
 
@@ -81,17 +104,20 @@
         display: flex;
         justify-content: space-between;
 
-        p, a {
+        p,
+        a {
             min-width: 3em;
             text-align: center;
             margin: auto;
         }
+
         p {
             &.curr-page {
                 font-size: 1.1rem;
                 // font-weight: bold;
             }
         }
+
         a {
             &.pokemon-previous {
                 margin: auto auto auto 1rem;
@@ -109,17 +135,19 @@
 
 
 // Start of Pokemon single
-.poke-single-container {}
+.single-pokemon-body {
+    padding: 6rem 0 !important;
+}
 
 .pokemon-single {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
+    // display: flex;
+    // flex-wrap: nowrap;
+    // flex-direction: row;
     border-radius: .6rem !important;
     box-shadow: $dark-neumorphism !important;
     text-align: left !important;
     min-width: 100% !important;
-    padding: 3rem 2rem;
+    padding: 1.4rem 2rem 2rem 2rem;
 
     .number {
         background-color: rgba(255, 255, 255, 0.6);
@@ -130,17 +158,19 @@
     }
 
     .img-container {
-        background-color: rgba(255, 255, 255, 0.4) !important;
-        border-radius: 50%;
+        // background-color: rgba(255, 255, 255, 0.4) !important;
+        // border-radius: 50%;
         width: 26rem !important;
         height: 26rem !important;
         margin: auto !important;
 
         img {
             transition: all .5s ease-in-out;
-            width: inherit;
-            height: inherit;
+            // width: inherit;
+            // height: inherit;
             margin: auto;
+
+            // animation: holoCard 15s ease infinite;
 
             &.pokemon-img-hover {
                 // position: absolute;
@@ -148,23 +178,11 @@
                 // transform: scale(2);
             }
 
-            &:last-child {
-                display: none;
-            }
-
-
-        }
-
-        &:hover img:last-child {
-            display: block;
-        }
-
-        &:hover img:first-child {
-            display: none;
         }
     }
 
     .info {
+        transform: translateY(-8rem);
         margin: 20px auto;
 
         .name {
@@ -172,17 +190,105 @@
             letter-spacing: 1px;
         }
 
+        i {
+            height: 25px;
+            width: 25px;
+            display: inline-block;
+            margin: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .icon-grass {
+            background-image: $pokemon-types-url;
+            background-position: -25px -50px;
+            width: 25px;
+            height: 25px;
+        }
+
+        .icon-lightning {
+            background-image: $pokemon-types-url;
+            background-position: -50px -50px;
+            width: 25px;
+            height: 25px;
+        }
+
+        .icon-dark {
+            background-image: $pokemon-types-url;
+            background-position: 0px -50px;
+            width: 25px;
+            height: 25px;
+        }
+
+        .icon-fairy {
+            background-image: $pokemon-types-url;
+            background-position: -50px 0px;
+            width: 25px;
+            height: 25px;
+        }
+
+        .icon-fire {
+            background-image: $pokemon-types-url;
+            background-position: 0px 0px;
+            width: 25px;
+            height: 25px;
+        }
+
+        .icon-psychic {
+            background-image: $pokemon-types-url;
+            background-position: -75px -25px;
+            width: 25px;
+            height: 25px;
+        }
+
+        .icon-metal {
+            background-image: $pokemon-types-url;
+            background-position: -75px 0px;
+            width: 25px;
+            height: 25px;
+        }
+
+        .icon-dragon {
+            background-image: $pokemon-types-url;
+            background-position: 0px -25px;
+            width: 25px;
+            height: 25px;
+        }
+
+        .icon-water {
+            background-image: $pokemon-types-url;
+            background-position: -75px -50px;
+            width: 25px;
+            height: 25px;
+        }
+
+        .icon-fighting {
+            background-image: $pokemon-types-url;
+            background-position: -50px -25px;
+            width: 25px;
+            height: 25px;
+        }
+
+        .icon-colorless {
+            background-image: $pokemon-types-url;
+            background-position: -25px 0px;
+            width: 25px;
+            height: 25px;
+        }
+
         .pokemon-stats {
             margin: 1rem 0 0 0;
             display: flex;
             flex-wrap: wrap;
-            background-color: $theme-light-transparent;
+            // background-color: $theme-light-transparent;
             border-radius: 1rem;
+            -webkit-box-shadow: $theme-light-neumorphism;
+            -moz-box-shadow: $theme-light-neumorphism;
+            box-shadow: $theme-light-neumorphism;
 
             .single-stat {
                 display: flex;
                 flex-direction: column;
-                min-width: 33%;
+                min-width: 16%;
                 text-align: center;
                 padding: 1rem 0 0 .6rem;
 
@@ -201,7 +307,284 @@
         }
     }
 
+    h3 {
+        margin-bottom: 1rem;
+    }
+
+    .cards-slider {
+        // https://stackoverflow.com/questions/18744164/flex-box-align-last-row-to-grid
+        display: grid;
+        /* 1 */
+        grid-template-columns: repeat(auto-fill, 8rem);
+        /* 2 */
+        grid-gap: 1rem;
+        /* 3 */
+        justify-content: space-between;
+        /* 4 */
+
+        img {
+            // margin: auto;
+            cursor: pointer;
+            -webkit-box-shadow: $theme-card-neumorphism;
+            -moz-box-shadow: $theme-card-neumorphism;
+            box-shadow: $theme-card-neumorphism;
+            transition: all .2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+
+
+    }
+
 }
 
+#pokemon-card-modal {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: -1;
+    transition: all .4s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    // >.card-front,
+    // >.card-back {
+    //     background-color: white;
+    //     height: 100%;
+    //     width: 100%;
+
+    // }
+
+    // &::before {
+    //     content: "qweqwew";
+    //     position: absolute;
+    //     height: inherit;
+    //     width: inherit;
+    //     background-color: ivory;
+    //     z-index: inherit;
+    //     // animation: holoCard 15s ease infinite;
+    //     animation: holoGradient 15s ease infinite;
+    //     background-color: linear-gradient(115deg,
+    //             transparent 0%,
+    //             rgb(0, 231, 255) 30%,
+    //             rgb(255, 0, 231) 70%,
+    //             transparent 100%);
+    //     mix-blend-mode: color-dodge;
+    //     // opacity: 0.2;
+    // }
+
+    #pokemon-card-img {
+        // position: relative;
+        // overflow: hidden;
+        // display: inline-block;
+        // vertical-align: middle;
+        height: 40rem;
+        animation: holoCard 15s ease infinite;
+        // box-shadow: -3px -3px 3px 0 rgba(#26e6f7, 0.6), 3px 3px 3px 0 rgba(#f759e4, 0.6), 0 0 6px 2px rgba(#ffe759, 0.6),
+        //     0 35px 25px -15px rgba(0, 0, 0, 0.5);
+
+        -webkit-box-shadow: $theme-card-neumorphism;
+        -moz-box-shadow: $theme-card-neumorphism;
+        box-shadow: $theme-card-neumorphism;
+
+        // &:before,
+        // &:after {
+        //     content: "";
+        //     height: inherit;
+        //     width: inherit;
+        //     background: linear-gradient(115deg,
+        //             transparent 0%,
+        //             rgb(0, 231, 255) 30%,
+        //             rgb(255, 0, 231) 70%,
+        //             transparent 100%);
+        //     mix-blend-mode: color-dodge;
+        //     opacity: 0.2;
+        //     z-index: inherit;
+        //     animation: holoGradient 15s ease infinite;
+        // }
+
+        // &:after {
+        //     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif');
+        //     // background-position: center;
+        //     // background-size: 100%;
+        //     mix-blend-mode: color-dodge;
+        //     opacity: 1;
+        //     z-index: 2;
+        //     animation: holoSparkle 15s ease infinite;
+        // }
+
+        // &.active:before {
+        //     opacity: 1;
+        //     animation: none;
+        //     transition: none;
+        //     background: linear-gradient(115deg,
+        //             transparent 0%,
+        //             transparent 25%,
+        //             rgba(0, 231, 255, 0.7) 45%,
+        //             rgba(255, 0, 231, 0.7) 55%,
+        //             transparent 70%,
+        //             transparent 100%);
+        // }
+
+        // &.active:before,
+        // &.active:after {
+        //     animation: none;
+        // }
+    }
+
+    // End of &#pokemon-card-img
+
+
+
+
+
+}
+
+// testtttttttt
+// .card {
+//     width: 320px;
+//     height: 452px;
+//     background-color: #211799;
+//     background-image: url(https://images.pokemontcg.io/xy2/12_hires.png);
+//     background-size: 100%;
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     border-radius: 8px;
+//     box-shadow: -3px -3px 3px 0 rgba(#26e6f7, 0.6), 3px 3px 3px 0 rgba(#f759e4, 0.6), 0 0 6px 2px rgba(#ffe759, 0.6),
+//         0 35px 25px -15px rgba(0, 0, 0, 0.5);
+//     position: relative;
+//     overflow: hidden;
+//     display: inline-block;
+//     vertical-align: middle;
+//     margin: 20px 10px;
+//     animation: holoCard 15s ease infinite;
+// }
+
+// .card:before,
+// .card:after {
+//     content: "";
+//     position: absolute;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     top: 0;
+//     background-image: linear-gradient(115deg,
+//             transparent 0%,
+//             rgb(0, 231, 255) 30%,
+//             rgb(255, 0, 231) 70%,
+//             transparent 100%);
+//     background-position: 0% 0%;
+//     background-repeat: no-repeat;
+//     background-size: 300% 300%;
+//     mix-blend-mode: color-dodge;
+//     opacity: 0.2;
+//     z-index: 1;
+//     animation: holoGradient 15s ease infinite;
+// }
+
+// .card:after {
+//     background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif");
+//     background-position: center;
+//     background-size: 180%;
+//     mix-blend-mode: color-dodge;
+//     opacity: 1;
+//     z-index: 2;
+//     animation: holoSparkle 15s ease infinite;
+// }
+
+// .card.active:before {
+//     opacity: 1;
+//     animation: none;
+//     transition: none;
+//     background-image: linear-gradient(115deg,
+//             transparent 0%,
+//             transparent 25%,
+//             rgba(0, 231, 255, 0.7) 45%,
+//             rgba(255, 0, 231, 0.7) 55%,
+//             transparent 70%,
+//             transparent 100%);
+// }
+
+// .card.active:before,
+// .card.active:after {
+//     animation: none;
+// }
+
+// tetstrtststststs
+
+@keyframes holoGradient {
+
+    0%,
+    100% {
+        opacity: 0;
+        background-position: 0% 0%;
+    }
+
+    8% {
+        opacity: 0;
+    }
+
+    10% {
+        background-position: 0% 0%;
+    }
+
+    19% {
+        background-position: 100% 100%;
+        opacity: 0.5;
+    }
+
+    35% {
+        background-position: 100% 100%;
+    }
+
+    55% {
+        background-position: 0% 0%;
+        opacity: 0.3;
+    }
+
+    75% {
+        opacity: 0;
+    }
+}
+
+@keyframes holoSparkle {
+
+    0%,
+    5% {
+        opacity: 0.1;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.1;
+    }
+}
+
+@keyframes holoCard {
+
+    0%,
+    10% {
+        transform: rotate3d(0, 0, 0, -20deg);
+    }
+
+    20% {
+        transform: rotate3d(1, 1, 0.2, 30deg);
+    }
+
+    100% {
+        transform: rotate3d(0, 0, 0, -20deg);
+    }
+}
 
 // End of Pokemon single

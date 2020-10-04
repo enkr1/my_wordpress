@@ -103,6 +103,10 @@ main#main {
   border-bottom: none;
 }
 
+a, abbr, acronym, address, applet, big, blockquote, body, caption, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, iframe, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, ul, var {
+  vertical-align: middle !important;
+}
+
 header.entry-header.ast-no-thumbnail {
   padding: 0 !important;
 }
@@ -317,7 +321,7 @@ form.checkout.woocommerce-checkout {
 }
 
 #pokemon-body {
-  padding: 12rem 0;
+  padding: 10rem 0;
 }
 #pokemon-body .searchForm {
   display: flex;
@@ -326,6 +330,9 @@ form.checkout.woocommerce-checkout {
 #pokemon-body .searchForm input {
   height: 2.6rem;
   margin: auto 0;
+  box-shadow: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
+  border-radius: 2rem;
+  padding-left: 1.1rem;
 }
 #pokemon-body .searchForm #hintMsg {
   margin: auto auto auto 1rem;
@@ -338,12 +345,13 @@ form.checkout.woocommerce-checkout {
   display: flex;
   flex-wrap: wrap;
   align-items: space-between;
-  justify-content: center;
+  justify-content: left;
   margin: 0 auto;
   max-width: 1200px;
 }
 #pokemon-body .poke-container a {
   min-width: 20%;
+  max-width: 20%;
 }
 #pokemon-body .poke-container a .pokemon {
   border-radius: 0.4rem;
@@ -355,16 +363,15 @@ form.checkout.woocommerce-checkout {
 #pokemon-body .poke-container a .pokemon .img-container {
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 10rem;
+  height: 10rem;
   text-align: center;
   margin: 1rem auto;
+  box-shadow: 0px 0px 150px 0px white;
 }
 #pokemon-body .poke-container a .pokemon .img-container img {
-  width: inherit;
-  height: inherit;
   margin: auto;
-  max-width: 90%;
+  transform: scale(1.2);
 }
 #pokemon-body .poke-container a .pokemon .info {
   margin: 1.8rem auto 0 auto;
@@ -384,7 +391,8 @@ form.checkout.woocommerce-checkout {
   display: flex;
   justify-content: space-between;
 }
-#pokemon-body .pokemon-pagination p, #pokemon-body .pokemon-pagination a {
+#pokemon-body .pokemon-pagination p,
+#pokemon-body .pokemon-pagination a {
   min-width: 3em;
   text-align: center;
   margin: auto;
@@ -399,15 +407,16 @@ form.checkout.woocommerce-checkout {
   margin: auto 1rem auto auto;
 }
 
+.single-pokemon-body {
+  padding: 6rem 0 !important;
+}
+
 .pokemon-single {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
   border-radius: 0.6rem !important;
   box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5) !important;
   text-align: left !important;
   min-width: 100% !important;
-  padding: 3rem 2rem;
+  padding: 1.4rem 2rem 2rem 2rem;
 }
 .pokemon-single .number {
   background-color: rgba(255, 255, 255, 0.6);
@@ -419,45 +428,106 @@ form.checkout.woocommerce-checkout {
   padding: 0.2rem 0.6rem;
 }
 .pokemon-single .img-container {
-  background-color: rgba(255, 255, 255, 0.4) !important;
-  border-radius: 50%;
   width: 26rem !important;
   height: 26rem !important;
   margin: auto !important;
 }
 .pokemon-single .img-container img {
   transition: all 0.5s ease-in-out;
-  width: inherit;
-  height: inherit;
   margin: auto;
 }
-.pokemon-single .img-container img:last-child {
-  display: none;
-}
-.pokemon-single .img-container:hover img:last-child {
-  display: block;
-}
-.pokemon-single .img-container:hover img:first-child {
-  display: none;
-}
 .pokemon-single .info {
+  transform: translateY(-8rem);
   margin: 20px auto;
 }
 .pokemon-single .info .name {
   margin: 15px 0 7px;
   letter-spacing: 1px;
 }
+.pokemon-single .info i {
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  margin: 0.5rem;
+  vertical-align: middle;
+}
+.pokemon-single .info .icon-grass {
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
+  background-position: -25px -50px;
+  width: 25px;
+  height: 25px;
+}
+.pokemon-single .info .icon-lightning {
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
+  background-position: -50px -50px;
+  width: 25px;
+  height: 25px;
+}
+.pokemon-single .info .icon-dark {
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
+  background-position: 0px -50px;
+  width: 25px;
+  height: 25px;
+}
+.pokemon-single .info .icon-fairy {
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
+  background-position: -50px 0px;
+  width: 25px;
+  height: 25px;
+}
+.pokemon-single .info .icon-fire {
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
+  background-position: 0px 0px;
+  width: 25px;
+  height: 25px;
+}
+.pokemon-single .info .icon-psychic {
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
+  background-position: -75px -25px;
+  width: 25px;
+  height: 25px;
+}
+.pokemon-single .info .icon-metal {
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
+  background-position: -75px 0px;
+  width: 25px;
+  height: 25px;
+}
+.pokemon-single .info .icon-dragon {
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
+  background-position: 0px -25px;
+  width: 25px;
+  height: 25px;
+}
+.pokemon-single .info .icon-water {
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
+  background-position: -75px -50px;
+  width: 25px;
+  height: 25px;
+}
+.pokemon-single .info .icon-fighting {
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
+  background-position: -50px -25px;
+  width: 25px;
+  height: 25px;
+}
+.pokemon-single .info .icon-colorless {
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
+  background-position: -25px 0px;
+  width: 25px;
+  height: 25px;
+}
 .pokemon-single .info .pokemon-stats {
   margin: 1rem 0 0 0;
   display: flex;
   flex-wrap: wrap;
-  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 1rem;
+  box-shadow: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
 }
 .pokemon-single .info .pokemon-stats .single-stat {
   display: flex;
   flex-direction: column;
-  min-width: 33%;
+  min-width: 16%;
   text-align: center;
   padding: 1rem 0 0 0.6rem;
 }
@@ -471,7 +541,146 @@ form.checkout.woocommerce-checkout {
   font-size: 1.6rem;
   font-weight: 500;
 }
+.pokemon-single h3 {
+  margin-bottom: 1rem;
+}
+.pokemon-single .cards-slider {
+  display: grid;
+  /* 1 */
+  grid-template-columns: repeat(auto-fill, 8rem);
+  /* 2 */
+  grid-gap: 1rem;
+  /* 3 */
+  justify-content: space-between;
+  /* 4 */
+}
+.pokemon-single .cards-slider img {
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 2px #787878;
+  transition: all 0.2s ease-in-out;
+}
+.pokemon-single .cards-slider img:hover {
+  transform: scale(1.05);
+}
 
+#pokemon-card-modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.4s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#pokemon-card-modal #pokemon-card-img {
+  height: 40rem;
+  -webkit-animation: holoCard 15s ease infinite;
+          animation: holoCard 15s ease infinite;
+  box-shadow: 0px 0px 10px 2px #787878;
+}
+
+@-webkit-keyframes holoGradient {
+  0%, 100% {
+    opacity: 0;
+    background-position: 0% 0%;
+  }
+  8% {
+    opacity: 0;
+  }
+  10% {
+    background-position: 0% 0%;
+  }
+  19% {
+    background-position: 100% 100%;
+    opacity: 0.5;
+  }
+  35% {
+    background-position: 100% 100%;
+  }
+  55% {
+    background-position: 0% 0%;
+    opacity: 0.3;
+  }
+  75% {
+    opacity: 0;
+  }
+}
+
+@keyframes holoGradient {
+  0%, 100% {
+    opacity: 0;
+    background-position: 0% 0%;
+  }
+  8% {
+    opacity: 0;
+  }
+  10% {
+    background-position: 0% 0%;
+  }
+  19% {
+    background-position: 100% 100%;
+    opacity: 0.5;
+  }
+  35% {
+    background-position: 100% 100%;
+  }
+  55% {
+    background-position: 0% 0%;
+    opacity: 0.3;
+  }
+  75% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes holoSparkle {
+  0%, 5% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+@keyframes holoSparkle {
+  0%, 5% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+@-webkit-keyframes holoCard {
+  0%, 10% {
+    transform: rotate3d(0, 0, 0, -20deg);
+  }
+  20% {
+    transform: rotate3d(1, 1, 0.2, 30deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 0, -20deg);
+  }
+}
+@keyframes holoCard {
+  0%, 10% {
+    transform: rotate3d(0, 0, 0, -20deg);
+  }
+  20% {
+    transform: rotate3d(1, 1, 0.2, 30deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 0, -20deg);
+  }
+}
 /* Start of loading gif */
 #loader {
   position: absolute;

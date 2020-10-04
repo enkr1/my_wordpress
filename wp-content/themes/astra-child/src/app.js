@@ -72,27 +72,59 @@ jQuery(document).ready(function () {
     } else if ((window.location.pathname).includes("pokemon-single")) {
         window.onload = function () {
             // var pokemon_type = document.getElementsByClassName('pokemon-type')[0].innerHTML;
-            var pokemon_types = document.getElementsByClassName('pokemon-type');
-            var pokemon_bgs = document.getElementsByClassName('pokemon');
-            for (var i = 0; i < pokemon_types.length; i++) {
-                // console.log(pokemon_types[i].innerHTML);
-                var main_type = pokemon_types[i].innerHTML;
-                if (main_type.includes(",")) {
-                    main_type = main_type.substring(0, main_type.indexOf(", "));
-                    pokemon_bgs[0].style.backgroundColor = colors[main_type];
-                } else {
-                    pokemon_bgs[0].style.backgroundColor = colors[main_type];
-                }
-            }
+
+            // var pokemon_types = document.getElementsByClassName('pokemon-type');
+            // var pokemon_bgs = document.getElementsByClassName('pokemon');
+            // for (var i = 0; i < pokemon_types.length; i++) {
+            //     // console.log(pokemon_types[i].innerHTML);
+            //     var main_type = pokemon_types[i].innerHTML;
+            //     if (main_type.includes(",")) {
+            //         main_type = main_type.substring(0, main_type.indexOf(", "));
+            //         pokemon_bgs[0].style.backgroundColor = colors[main_type];
+            //     } else {
+            //         pokemon_bgs[0].style.backgroundColor = colors[main_type];
+            //     }
+            // }
 
             var stat_names = document.getElementsByClassName('stat-name');
             var stat_number = document.getElementsByClassName('stat-number');
             for (var i = 0; i < stat_names.length; i++) {
-                console.log(stat_names[i].innerHTML);
+                // console.log(stat_names[i].innerHTML);
                 var stat_name = stat_names[i].innerHTML;
-                console.log(stat_colors[stat_name]);
+                // console.log(stat_colors[stat_name]);
                 stat_number[i].style.color = stat_colors[stat_name];
             }
+
+
+            var pokemon_card = document.getElementsByClassName('pokemon-card');
+            for (var i = 0; i < pokemon_card.length; i++) {
+                pokemon_card[i].addEventListener("click", enlargeCard)
+                console.log(pokemon_card[i].innerHTML);
+                // var stat_name = stat_names[i].innerHTML;
+                // stat_number[i].style.color = stat_colors[stat_name];
+            }
+            
+                var img = document.getElementById('pokemon-card-img');
+                var modal = document.getElementById('pokemon-card-modal');
+            function enlargeCard() {
+                modal.style.opacity = "1";
+                modal.style.zIndex = "9999";
+                var str = this.src;
+                var n = str.lastIndexOf(".");
+                str = str.substring(0, n)+"_hires"+str.substring(n);
+                // console.log(str);
+                img.src = str;
+                // img.style.backgroundImage = "url(" + this.src + ")";
+                // alert(this.src);
+            }
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                  modal.style.opacity = "0";
+                  modal.style.zIndex = "-1";
+                }
+              }
+
+
         }
     } else if ((window.location.pathname).includes("pokemon")) {
         window.onload = function () {
