@@ -1,6 +1,6 @@
 /* Start of loading gif */
 #loader {
-    position: absolute;
+    position: fixed;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -14,6 +14,11 @@
 .hidden {
     opacity: 0 !important;
     z-index: -1 !important;
+}
+
+.show {
+    opacity: 1 !important;
+    z-index: 999 !important;
 }
 
 /*Add an overlay to the entire page blocking any further presses to buttons or other elements.*/

@@ -138,3 +138,16 @@ add_filter('woocommerce_enqueue_styles', '__return_false');
 // {
 //     return human_time_diff($post_date, current_time('timestamp')) . ' ago';
 // }
+
+// https://www.wpbeginner.com/wp-tutorials/how-to-limit-search-results-for-specific-post-types-in-wordpress/
+function searchfilter($query)
+{
+
+    if ($query->is_search && !is_admin()) {
+        $query->set('post_type', array('post', 'page'));
+    }
+
+    return $query;
+}
+
+add_filter('pre_get_posts', 'searchfilter');

@@ -52,6 +52,7 @@ class PokemonPlugin
         // add_action('init', array($this, 'pokemon_taxonomy'));
         add_shortcode('pokemons', array($this, 'pokemons_function'));
         add_shortcode('pokemon_single', array($this, 'pokemon_single_function'));
+        add_shortcode('pokemon_mega_cards', array($this, 'pokemon_mega_cards_function'));
 
         // Custom template
         $this->templates = array();
@@ -66,7 +67,8 @@ class PokemonPlugin
         // Add your templates to this array.
         $this->templates = array(
             'templates/template-pokemons.php' => 'Pokemons',
-            'templates/single-pokemons.php' => 'Pokemon'
+            'templates/single-pokemons.php' => 'Pokemon',
+            'templates/template-pokemon-mega-cards.php' => 'Pokemon MEGA Cards',
         );
     }
 
@@ -85,9 +87,41 @@ class PokemonPlugin
         flush_rewrite_rules();
     }
 
+    function pokemon_mega_cards_function()
+    {
+        $data = "<div id='poke_container' class='poke-container poke-mega-cards-container'>";
+
+        // APIs
+        $cards = $this->call_pokemontcg_subtype('MEGA');
+
+        $displayCards = "<div class='cards-slider'>";
+        // echo count($cards->cards);
+        for ($i = 0; $i < count($cards->cards); $i++) {
+            // for ($i = 0; $i < 10; $i++) {
+            $imageUrl = $cards->cards[$i]->imageUrl; 
+            $name = $cards->cards[$i]->name;
+            if (@getimagesize($imageUrl)) {
+                $displayCards .=  "<img class='pokemon-card' src='$imageUrl' alt= '$name' />";
+                // $displayCards .=  "<div class='pokemon-card' style='background-image: url($imageUrl);'></div>";
+            }
+        }
+        $displayCards .= "</div>";
+
+
+        $data .= $displayCards;
+
+        return $data . "</div>";
+    }
+
+    /**
+     * Display list of pokemons including its pagination
+     * (You can customize the number of pokemon you want to display, 
+     * the maximum number of the pokemon, pagination logic) 
+     * It will call search_pokemons_function, if users search something
+     * @return void
+     */
     function pokemons_function()
     {
-        // First ini
         $displayPokemon = 10; // The number of pokemon per page
         $maxNumber = 893; // The maximum number of pokemons in the storgae
         $noOfPokemon = $displayPokemon; // Current total number of pokemon displayed
@@ -95,16 +129,14 @@ class PokemonPlugin
         $pageNo = 1;
         $prevPage = 0;
         $nextPage = $pageNo + 1;
-        $isMaxRange = FALSE;
-        $pagination = ''; // html
+        $isMaxRange = FALSE; // check if it is on the last page
+        $pagination = ''; // For html data
         $paginationNo = ceil($maxNumber / $displayPokemon);
-        $paginationLength = 10; // use odd number
+        $paginationLength = 10; // The number between the previous and next buttons
         $startOfPagination = 1;
         $pageCtrl = 6; // Position of the number in $paginationLength (place)
-        $data = "";
-
-        // $data .= "<div id='hintMsg'></div>";
-        $data .= "<div id='poke_container' class='poke-container'>";
+        $data = "<div id='poke_container' class='poke-container'>";
+        $userInput = ""; // Get from 'q' parameter
 
         if (isset($_GET['pageNo']) && $_GET['pageNo'] > 1) {
             $pageNo = $_GET['pageNo'];
@@ -114,31 +146,17 @@ class PokemonPlugin
             $nextPage = $pageNo + 1;
         }
 
-        $userInput = "";
-
         if (isset($_GET['encrypt'])) {
             $userInput = $_GET['encrypt'];
             $data .= $this->search_pokemons_function($userInput);
         } else {
-            for ($startFrom; $startFrom <= $noOfPokemon; $startFrom++) { // Maximum number is 893
-                $api = curl_init("https://pokeapi.co/api/v2/pokemon/" . $startFrom);
-                curl_setopt($api, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($api);
-                curl_close($api);
-                $pokemon = json_decode($response);
+            for ($startFrom; $startFrom <= $noOfPokemon; $startFrom++) {
+                $pokemon = $this->call_pokeapi($startFrom);
 
                 if (isset($pokemon) && $isMaxRange != TRUE) { // exists
                     $name = ucfirst($pokemon->name);
                     $number = str_pad($startFrom, 3, "0", STR_PAD_LEFT);
-                    $types = "";
-
-                    for ($i = 0; $i < count($pokemon->types); $i++) {
-                        if ($i != 0) {
-                            $types .= ', ' . ucfirst($pokemon->types[$i]->type->name);
-                        } else {
-                            $types .= ucfirst($pokemon->types[$i]->type->name);
-                        }
-                    }
+                    $types = $this->set_pokemon_types($pokemon->types);
 
                     $data .= "
                     <a href='/pokemon-single/?id=$startFrom'>
@@ -185,21 +203,25 @@ class PokemonPlugin
                 $pagination .= "<p class='dot'>...</p>";
             }
             // End of Pagination
-        }
-
-        $data .= "</div>";
-        $data .= "<input type='hidden' id='pageNo' name='pageNo' value='$pageNo'>
+            $data .= "</div>";
+            $data .= "<input type='hidden' id='pageNo' name='pageNo' value='$pageNo'>
                   <input type='hidden' id='noOfPokemon' name='noOfPokemon' value='$noOfPokemon'>";
 
-        // Add pagination only when user is not searching
-        if (!isset($_GET['encrypt'])) {
+            // Add pagination only when user is not searching
             $data .= "<div class='pokemon-pagination'>
                     <a href='/pokemon/?pageNo=$prevPage' class='pokemon-previous' id='pokemon-previous'>PREVIOUS</a>$pagination<a href='/pokemon/?pageNo=$nextPage' class='pokemon-next' id='pokemon-next'>NEXT</a>
                   </div>";
         }
+
         return $data;
     }
 
+    /**
+     * Display search result
+     *
+     * @param Array $userInput (encoded)
+     * @return void
+     */
     function search_pokemons_function($userInput)
     {
         $data = "";
@@ -212,23 +234,10 @@ class PokemonPlugin
 
         foreach ($array as $value) {
             // echo $value . PHP_EOL;
-            $api = curl_init("https://pokeapi.co/api/v2/pokemon/" . $value);
-            curl_setopt($api, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($api);
-            curl_close($api);
-            $pokemon = json_decode($response);
-
+            $pokemon = $this->call_pokeapi($value);
             $name = ucfirst($pokemon->name);
             $number = str_pad($value, 3, "0", STR_PAD_LEFT);
-            $types = "";
-
-            for ($i = 0; $i < count($pokemon->types); $i++) {
-                if ($i != 0) {
-                    $types .= ', ' . ucfirst($pokemon->types[$i]->type->name);
-                } else {
-                    $types .= ucfirst($pokemon->types[$i]->type->name);
-                }
-            }
+            $types = $this->set_pokemon_types($pokemon->types);
 
             $data .= "
                     <a href='/pokemon-single/?id=$value'>
@@ -249,44 +258,28 @@ class PokemonPlugin
         return $data;
     }
 
+    /**
+     * Display a single pokemon by ID from the URL parameter
+     * @return void
+     */
     function pokemon_single_function()
     {
         $id = $_GET['id'];
-
         $data = "<div id='poke_container' class='poke-container poke-single-container'>";
-        $api1 = curl_init("https://pokeapi.co/api/v2/pokemon/" . $id);
-        curl_setopt($api1, CURLOPT_RETURNTRANSFER, true);
-        $response1 = curl_exec($api1);
-        curl_close($api1);
-        $pokemon = json_decode($response1);
 
-        // Cards
-        $api2 = curl_init("https://api.pokemontcg.io/v1/cards?name=" . $pokemon->name);
-        curl_setopt($api2, CURLOPT_RETURNTRANSFER, true);
-        $response2 = curl_exec($api2);
-        curl_close($api2);
-        $cards = json_decode($response2);
+        // APIs
+        $pokemon = $this->call_pokeapi($id);
+        $cards = $this->call_pokemontcg($pokemon->name);
+
         $displayCards = "<div class='cards-slider'>";
-
         // echo count($cards->cards);
-
         for ($i = 0; $i < count($cards->cards); $i++) {
             $imageUrl = $cards->cards[$i]->imageUrl; //HiRes
             if (@getimagesize($imageUrl)) {
                 $displayCards .=  "<img class='pokemon-card' src='$imageUrl' alt= '$pokemon->name' />";
             }
         }
-
-        // for ($i = 0; $i < 1; $i++) {
-        //     $imageUrl = $cards->cards[0]->imageUrlHiRes;
-        //     if (@getimagesize($imageUrl)) {
-        //         $displayCards .=  "<img class='pokemon-card' src='$imageUrl' alt= '$pokemon->name' />";
-        //     }
-        // }
-
         $displayCards .= "</div>";
-
-
 
         $name = ucfirst($pokemon->name);
         $number = str_pad($id, 3, "0", STR_PAD_LEFT);
@@ -323,6 +316,70 @@ class PokemonPlugin
             </div>";
 
         return $data . "</div>";
+    }
+
+    /**
+     * Call PokeAPI
+     *
+     * @param String $id (Pokemon's ID)
+     * @return response (ArrayList of Pokemon data)
+     */
+    function call_pokeapi($id)
+    {
+        $api = curl_init("https://pokeapi.co/api/v2/pokemon/" . $id);
+        curl_setopt($api, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($api);
+        curl_close($api);
+        return json_decode($response);
+    }
+
+    /**
+     * Call Pokemontcg API by subtype
+     *
+     * @param String $subtype
+     * @return response (ArrayList of Pokemon data using subtype)
+     */
+    function call_pokemontcg_subtype($subtype)
+    {
+        $api = curl_init("https://api.pokemontcg.io/v1/cards?subtype=" . $subtype);
+        curl_setopt($api, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($api);
+        curl_close($api);
+        return json_decode($response);
+    }
+
+    /**
+     * Call Pokemontcg API by name
+     *
+     * @param String $name
+     * @return response (ArrayList of Pokemon data which has image links)
+     */
+    function call_pokemontcg($name)
+    {
+        $api = curl_init("https://api.pokemontcg.io/v1/cards?name=" . $name);
+        curl_setopt($api, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($api);
+        curl_close($api);
+        return json_decode($response);
+    }
+
+    /**
+     * Set the types of each pokemon
+     *
+     * @param Array $types
+     * @return result (String)
+     */
+    function set_pokemon_types($types)
+    {
+        $result = "";
+        for ($i = 0; $i < count($types); $i++) {
+            if ($i != 0) {
+                $result .= ', ' . ucfirst($types[$i]->type->name);
+            } else {
+                $result .= ucfirst($types[$i]->type->name);
+            }
+        }
+        return $result;
     }
 
     /**

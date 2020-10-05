@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 }
 
 get_header(); ?>
-<script>
+<!-- <script>
     setTimeout(hideLoader, 1000);
 
     function hideLoader() {
@@ -33,9 +33,9 @@ get_header(); ?>
     }
 </script>
 
-<div id="loader" class="lds-dual-ring overlay"></div>
+<div id="loader" class="lds-dual-ring overlay"></div> -->
 
-<div id="pokemon-body" class="pokemon-body single-pokemon-body loading-process" style="display:none;">
+<div id="pokemon-body" class="pokemon-body single-pokemon-body">
 
     <?php echo do_shortcode('[pokemon_single]'); ?>
 
@@ -43,42 +43,7 @@ get_header(); ?>
 
 <div id="pokemon-card-modal">
     <!-- <div id="pokemon-card-img" class="card"></div> -->
-    <img id="pokemon-card-img" class="card">
+    <img id="pokemon-card-img">
 </div>
-
-<style class="hover"></style>
-
-<script>
-    /*
-
-  using 
-    - an animated gif of sparkles.
-    - an animated gradient as a holo effect.
-    - color-dodge blend mode
-
-  this could be enhanced with some 3d effects
-  which change the background positions
-  
-*/
-
-    var $cards = jQuery(".card");
-    var $style = jQuery(".hover");
-    $cards.on("mousemove", function(e) {
-        var $card = jQuery(this);
-        var l = e.offsetX;
-        var t = e.offsetY;
-        var h = $card.height();
-        var w = $card.width();
-        var lp = Math.abs(Math.floor(100 / w * l) - 100);
-        var tp = Math.abs(Math.floor(100 / h * t) - 100);
-        var bg = `background-position: ${lp}% ${tp}%;`
-        var style = `.card.active:before { ${bg} }`
-        $cards.removeClass("active");
-        $card.addClass("active");
-        $style.html(style);
-    }).on("mouseout", function() {
-        $cards.removeClass("active");
-    });
-</script>
 
 <?php get_footer(); ?>

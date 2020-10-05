@@ -223,7 +223,7 @@ form.checkout.woocommerce-checkout {
   box-shadow: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
   opacity: 1;
   transition: all 0.5s ease-in-out;
-  z-index: 999;
+  z-index: -1;
   width: 20%;
 }
 .blog-sidebar li {
@@ -259,7 +259,15 @@ form.checkout.woocommerce-checkout {
 }
 
 .footer-adv-overlay {
-  padding: 3rem 0;
+  padding: 2rem 0;
+}
+.footer-adv-overlay h2 {
+  font-size: 1.2rem !important;
+}
+
+.ast-small-footer > .ast-footer-overlay {
+  font-size: 0.8rem;
+  padding: 1rem 0;
 }
 
 .template-recipes-container {
@@ -361,13 +369,12 @@ form.checkout.woocommerce-checkout {
   text-align: center;
 }
 #pokemon-body .poke-container a .pokemon .img-container {
-  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
   width: 10rem;
   height: 10rem;
   text-align: center;
   margin: 1rem auto;
-  box-shadow: 0px 0px 150px 0px white;
+  box-shadow: 0px 0px 80px 0px white;
 }
 #pokemon-body .poke-container a .pokemon .img-container img {
   margin: auto;
@@ -444,78 +451,104 @@ form.checkout.woocommerce-checkout {
   margin: 15px 0 7px;
   letter-spacing: 1px;
 }
-.pokemon-single .info i {
-  height: 25px;
-  width: 25px;
-  display: inline-block;
-  margin: 0.5rem;
-  vertical-align: middle;
-}
 .pokemon-single .info .icon-grass {
   background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
   background-position: -25px -50px;
   width: 25px;
   height: 25px;
+  display: inline-block;
+  margin: 0.5rem;
+  vertical-align: middle;
 }
 .pokemon-single .info .icon-lightning {
   background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
   background-position: -50px -50px;
   width: 25px;
   height: 25px;
+  display: inline-block;
+  margin: 0.5rem;
+  vertical-align: middle;
 }
 .pokemon-single .info .icon-dark {
   background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
   background-position: 0px -50px;
   width: 25px;
   height: 25px;
+  display: inline-block;
+  margin: 0.5rem;
+  vertical-align: middle;
 }
 .pokemon-single .info .icon-fairy {
   background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
   background-position: -50px 0px;
   width: 25px;
   height: 25px;
+  display: inline-block;
+  margin: 0.5rem;
+  vertical-align: middle;
 }
 .pokemon-single .info .icon-fire {
   background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
   background-position: 0px 0px;
   width: 25px;
   height: 25px;
+  display: inline-block;
+  margin: 0.5rem;
+  vertical-align: middle;
 }
 .pokemon-single .info .icon-psychic {
   background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
   background-position: -75px -25px;
   width: 25px;
   height: 25px;
+  display: inline-block;
+  margin: 0.5rem;
+  vertical-align: middle;
 }
 .pokemon-single .info .icon-metal {
   background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
   background-position: -75px 0px;
   width: 25px;
   height: 25px;
+  display: inline-block;
+  margin: 0.5rem;
+  vertical-align: middle;
 }
 .pokemon-single .info .icon-dragon {
   background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
   background-position: 0px -25px;
   width: 25px;
   height: 25px;
+  display: inline-block;
+  margin: 0.5rem;
+  vertical-align: middle;
 }
 .pokemon-single .info .icon-water {
   background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
   background-position: -75px -50px;
   width: 25px;
   height: 25px;
+  display: inline-block;
+  margin: 0.5rem;
+  vertical-align: middle;
 }
 .pokemon-single .info .icon-fighting {
   background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
   background-position: -50px -25px;
   width: 25px;
   height: 25px;
+  display: inline-block;
+  margin: 0.5rem;
+  vertical-align: middle;
 }
 .pokemon-single .info .icon-colorless {
   background-image: url("https://assets.pokemon.com/static2/_ui/img/cards/energy-types.png");
   background-position: -25px 0px;
   width: 25px;
   height: 25px;
+  display: inline-block;
+  margin: 0.5rem;
+  vertical-align: middle;
 }
 .pokemon-single .info .pokemon-stats {
   margin: 1rem 0 0 0;
@@ -523,13 +556,14 @@ form.checkout.woocommerce-checkout {
   flex-wrap: wrap;
   border-radius: 1rem;
   box-shadow: 0px 0px 33px 0px rgba(199, 199, 199, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 .pokemon-single .info .pokemon-stats .single-stat {
   display: flex;
   flex-direction: column;
   min-width: 16%;
   text-align: center;
-  padding: 1rem 0 0 0.6rem;
+  padding: 1rem 0 0 0;
 }
 .pokemon-single .info .pokemon-stats .single-stat small {
   color: #505050;
@@ -582,6 +616,93 @@ form.checkout.woocommerce-checkout {
   -webkit-animation: holoCard 15s ease infinite;
           animation: holoCard 15s ease infinite;
   box-shadow: 0px 0px 10px 2px #787878;
+}
+
+.poke-mega-cards-container {
+  display: block !important;
+  min-width: 100% !important;
+}
+.poke-mega-cards-container .cards-slider {
+  display: grid;
+  /* 1 */
+  grid-template-columns: repeat(auto-fill, 14rem);
+  /* 2 */
+  grid-gap: 1rem;
+  /* 3 */
+  justify-content: space-between;
+  /* 4 */
+}
+.poke-mega-cards-container .cards-slider .pokemon-card {
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 2px #787878;
+  transition: all 0.2s ease-in-out;
+  border-radius: 10px;
+  margin: 0.8rem auto;
+}
+.poke-mega-cards-container .cards-slider .pokemon-card:hover {
+  transform: scale(1.1);
+}
+
+#pokemon-card-special-img {
+  height: 28.2rem;
+  width: 20rem;
+  background-color: #211799;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: holoCard 15s ease infinite;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  z-index: 1;
+  -webkit-animation: holoCard 15s ease infinite;
+  box-shadow: -3px -3px 3px 0 rgba(38, 230, 247, 0.6), 3px 3px 3px 0 rgba(247, 89, 228, 0.6), 0 0 6px 2px rgba(255, 231, 89, 0.6), 0 35px 25px -15px rgba(0, 0, 0, 0.5);
+  vertical-align: middle;
+}
+
+.card:before,
+.card:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-image: linear-gradient(115deg, transparent 0%, #00e7ff 30%, #ff00e7 70%, transparent 100%);
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-size: 300% 300%;
+  mix-blend-mode: color-dodge;
+  opacity: 0.2;
+  z-index: 1;
+  -webkit-animation: holoGradient 15s ease infinite;
+          animation: holoGradient 15s ease infinite;
+}
+
+.card:after {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif");
+  background-position: center;
+  background-size: 100%;
+  mix-blend-mode: color-dodge;
+  opacity: 1;
+  z-index: 2;
+  -webkit-animation: holoSparkle 15s ease infinite;
+          animation: holoSparkle 15s ease infinite;
+}
+
+.card.active::before {
+  opacity: 1;
+  -webkit-animation: none;
+          animation: none;
+  transition: none;
+  background-image: linear-gradient(115deg, transparent 0%, transparent 25%, rgba(0, 231, 255, 0.7) 45%, rgba(255, 0, 231, 0.7) 55%, transparent 70%, transparent 100%);
+}
+
+.card.active::before,
+.card.active::after {
+  -webkit-animation: none;
+          animation: none;
 }
 
 @-webkit-keyframes holoGradient {
@@ -683,7 +804,7 @@ form.checkout.woocommerce-checkout {
 }
 /* Start of loading gif */
 #loader {
-  position: absolute;
+  position: fixed;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -697,6 +818,11 @@ form.checkout.woocommerce-checkout {
 .hidden {
   opacity: 0 !important;
   z-index: -1 !important;
+}
+
+.show {
+  opacity: 1 !important;
+  z-index: 999 !important;
 }
 
 /*Add an overlay to the entire page blocking any further presses to buttons or other elements.*/

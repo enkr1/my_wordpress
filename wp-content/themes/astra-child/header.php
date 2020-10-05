@@ -66,9 +66,23 @@ if (!defined('ABSPATH')) {
 
 		<?php astra_header_after(); ?>
 
+		<script>
+			// setTimeout(hideLoader, 1000);
+
+			jQuery(window).on('load', function() {
+				var container = document.getElementsByClassName("loading-process");
+				for (var i = 0; i < container.length; i++) {
+					jQuery('#loader').addClass('hidden');
+					container[i].style.display = 'block';
+				}
+			});
+		</script>
+
 		<?php astra_content_before(); ?>
 
-		<div id="content" class="site-content">
+		<div id="loader" class="lds-dual-ring overlay"></div>
+
+		<div id="content" class="site-content loading-process" style="display:none;">
 
 			<div class="ast-container">
 

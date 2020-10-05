@@ -103,29 +103,68 @@ jQuery(document).ready(function () {
                 // var stat_name = stat_names[i].innerHTML;
                 // stat_number[i].style.color = stat_colors[stat_name];
             }
-            
-                var img = document.getElementById('pokemon-card-img');
-                var modal = document.getElementById('pokemon-card-modal');
+
+            var img = document.getElementById('pokemon-card-img');
+            var modal = document.getElementById('pokemon-card-modal');
+
             function enlargeCard() {
-                modal.style.opacity = "1";
-                modal.style.zIndex = "9999";
+                jQuery('#loader').removeClass('hidden');
                 var str = this.src;
                 var n = str.lastIndexOf(".");
-                str = str.substring(0, n)+"_hires"+str.substring(n);
+                str = str.substring(0, n) + "_hires" + str.substring(n);
                 // console.log(str);
                 img.src = str;
+
+                img.onload = function () {
+                    jQuery('#loader').addClass('hidden');
+                    modal.style.opacity = "1";
+                    modal.style.zIndex = "9999";
+                }
                 // img.style.backgroundImage = "url(" + this.src + ")";
                 // alert(this.src);
             }
-            window.onclick = function(event) {
+
+            window.onclick = function (event) {
                 if (event.target == modal) {
-                  modal.style.opacity = "0";
-                  modal.style.zIndex = "-1";
+                    modal.style.opacity = "0";
+                    modal.style.zIndex = "-1";
                 }
-              }
+            }
 
 
         }
+    } else if ((window.location.pathname).includes("pokemon-mega-cards")) {
+
+        var pokemon_card = document.getElementsByClassName('pokemon-card');
+        for (var i = 0; i < pokemon_card.length; i++) {
+            pokemon_card[i].addEventListener("click", enlargeCard)
+            console.log(pokemon_card[i].innerHTML);
+        }
+
+        var modal = document.getElementById('pokemon-card-modal');
+
+        function enlargeCard() {
+            jQuery('#loader').removeClass('hidden');
+            var str = this.src;
+            var n = str.lastIndexOf(".");
+            str = str.substring(0, n) + "_hires" + str.substring(n);
+
+            jQuery('<img/>').attr('src', str).on('load', function () {
+                jQuery(this).remove(); // prevent memory leaks as @benweet suggested
+                jQuery('#loader').addClass('hidden');
+                modal.style.opacity = "1";
+                modal.style.zIndex = "9999";
+                jQuery('#pokemon-card-special-img').css('background-image', 'url(' + str + ')');
+            });
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.opacity = "0";
+                    modal.style.zIndex = "-1";
+                }
+            }
+        }
+
     } else if ((window.location.pathname).includes("pokemon")) {
         window.onload = function () {
             // var pokemon_type = document.getElementsByClassName('pokemon-type')[0].innerHTML;

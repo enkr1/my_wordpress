@@ -35,6 +35,8 @@ get_header(); ?>
 
 </div><!-- #primary -->
 
+<div class="blog-sidebar-opener" id="blog-sidebar-opener">Open Sidebar</div>
+
 <div class="blog-sidebar" id="blog-sidebar">
 	<div class="blog-sidebar-hider" id="blog-sidebar-hider">
 		<p>Hide Sidebar</p>
@@ -42,7 +44,6 @@ get_header(); ?>
 	<?php dynamic_sidebar('blog-sidebar'); ?>
 </div>
 
-<div class="blog-sidebar-opener" id="blog-sidebar-opener">Open Sidebar</div>
 
 <?php if (astra_page_layout() == 'right-sidebar') : ?>
 

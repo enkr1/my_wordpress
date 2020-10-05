@@ -25,31 +25,20 @@ get_header(); ?>
 
 <script>
     function updateUrl(input) {
-        window.history.replaceState(null, null, "?q=" + (input).trim());
+        window.history.pushState(null, null, "?q=" + (input).trim());
     }
 </script>
 
 <script>
-    jQuery(window).ready(hideLoader); // not really working 
-    
-    // setTimeout(hideLoader, 1000);
-
-    function hideLoader() {
-        var container = document.getElementsByClassName("loading-process");
-        for (var i = 0; i < container.length; i++) {
-            jQuery('#loader').addClass('hidden');
-        }
-
+    jQuery(window).ready(function() {
         // Load the parameter to enter field
         var url = new URL(window.location.href);
         document.getElementById("searchInput").value = url.searchParams.get("q");
-    }
+
+    });
 </script>
 
-<div id="loader" class="lds-dual-ring overlay"></div>
-
-
-<div id="pokemon-body" class="pokemon-body loading-process">
+<div id="pokemon-body" class="pokemon-body">
     <form class="searchForm">
         <input type="text" size="30" placeholder="Search.." id="searchInput" oninput="updateUrl(this.value);">
         <div id="hintMsg"></div>
@@ -117,7 +106,7 @@ get_header(); ?>
                         console.log("Name: " + result.name + ", ID: " + result.id);
                         pokemonIDs.push(result.id);
                     }
-                    display_msg = "You wrote: " + userInput.value + ", " + no_of_result + " result(s) found.";
+                    display_msg = "You searched '" + userInput.value + "', " + no_of_result + " result(s) found.";
                 },
                 beforeSend: function() {
                     // beforeSending = true;
@@ -155,7 +144,6 @@ get_header(); ?>
         });
 
     }
-
 </script>
 
 <?php get_footer(); ?>
