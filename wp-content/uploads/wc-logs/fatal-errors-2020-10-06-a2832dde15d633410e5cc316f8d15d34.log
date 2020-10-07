@@ -1,0 +1,135 @@
+2020-10-06T04:37:12+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:522
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 522
+
+2020-10-06T04:37:16+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:522
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 522
+
+2020-10-06T04:51:50+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:524
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 524
+
+2020-10-06T04:52:33+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:524
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 524
+
+2020-10-06T04:53:10+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:524
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 524
+
+2020-10-06T04:53:15+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:524
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 524
+
+2020-10-06T04:54:00+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:528
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 528
+
+2020-10-06T04:57:04+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:531
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 531
+
+2020-10-06T04:57:30+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:527
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 527
+
+2020-10-06T04:57:45+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:531
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 531
+
+2020-10-06T04:57:54+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:527
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 527
+
+2020-10-06T04:58:01+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:527
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 527
+
+2020-10-06T04:58:12+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:531
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 531
+
+2020-10-06T05:02:40+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:528
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 528
+
+2020-10-06T05:03:05+00:00 CRITICAL Uncaught Error: Object of class stdClass could not be converted to string in /var/www/html/wp-content/plugins/pokemon/pokemon.php:544
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): get_breweries_from_api('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-admin/admin-ajax.php(176): do_action('wp_ajax_get_bre...')
+#4 {main}
+  thrown in /var/www/html/wp-content/plugins/pokemon/pokemon.php on line 544
+

@@ -48,7 +48,7 @@ class PokemonPlugin
     function __construct()
     {
         // add action
-        // add_action('init', array($this, 'cw_post_type_pokemon'));
+        add_action('init', array($this, 'cw_post_type_pokemon'));
         // add_action('init', array($this, 'pokemon_taxonomy'));
         add_shortcode('pokemons', array($this, 'pokemons_function'));
         add_shortcode('pokemon_single', array($this, 'pokemon_single_function'));
@@ -87,6 +87,56 @@ class PokemonPlugin
         flush_rewrite_rules();
     }
 
+    function cw_post_type_pokemon()
+    {
+
+        $supports = array(
+            'title', // post title
+            'editor', // post content
+            'author', // post author
+            'thumbnail', // featured images
+            'excerpt', // post excerpt
+            'custom-fields', // custom fields
+            'comments', // post comments
+            'revisions', // post revisions
+            'post-formats', // post formats
+        );
+
+        $labels = array(
+            'name' => _x('Pokemons', 'plural'),
+            'singular_name' => _x('Pokemon', 'singular'),
+            'menu_name' => _x('Pokemons', 'admin menu'),
+            'name_admin_bar' => _x('Pokemons', 'admin bar'),
+            'add_new' => _x('Add New Pokemon', 'add new'),
+            'add_new_item' => __('Add New Pokemon'),
+            'new_item' => __('New Pokemon'),
+            'edit_item' => __('Edit Pokemon'),
+            'view_item' => __('View Pokemon'),
+            'all_items' => __('All Pokemons'),
+            'search_items' => __('Search Pokemons'),
+            'not_found' => __('No Pokemons Found.'),
+        );
+
+        $args = array(
+            'supports' => $supports,
+            'labels' => $labels,
+            'public' => true,
+            'query_var' => true,
+            'rewrite' => array('slug' => 'all-pokemons'),
+            'has_archive' => true,
+            'hierarchical' => false,
+            'menu_icon' => 'dashicons-remove',
+        );
+
+        register_post_type('pokemons', $args);
+    }
+
+
+    /**
+     * Display pokemon MEGA cards 
+     *
+     * @return void
+     */
     function pokemon_mega_cards_function()
     {
         $data = "<div id='poke_container' class='poke-container poke-mega-cards-container'>";
@@ -98,7 +148,7 @@ class PokemonPlugin
         // echo count($cards->cards);
         for ($i = 0; $i < count($cards->cards); $i++) {
             // for ($i = 0; $i < 10; $i++) {
-            $imageUrl = $cards->cards[$i]->imageUrl; 
+            $imageUrl = $cards->cards[$i]->imageUrl;
             $name = $cards->cards[$i]->name;
             if (@getimagesize($imageUrl)) {
                 $displayCards .=  "<img class='pokemon-card' src='$imageUrl' alt= '$name' />";
@@ -452,6 +502,169 @@ class PokemonPlugin
         return $template;
     }
 } // End of PokemonPlugin class
+
+
+add_action('update_brewery_list', 'get_breweries_from_api');
+add_action('wp_ajax_nopriv_get_breweries_from_api', 'get_breweries_from_api');
+add_action('wp_ajax_get_breweries_from_api', 'get_breweries_from_api');
+function get_breweries_from_api()
+{
+    $file = get_stylesheet_directory() . '/report.txt';
+    $current_page = (!empty($_POST['current_page'])) ? $_POST['current_page'] : 1;
+    $pokemons = [];
+
+    // Should return an array of objects
+    $results = wp_remote_retrieve_body(wp_remote_get('https://pokeapi.co/api/v2/pokemon?limit=100&offset=' . ($current_page - 0)));
+    
+    // file_put_contents($file, "Current P.: " . $current_page . "\n\n", FILE_APPEND);
+    // turn it into a PHP array from JSON string
+    
+    // $results = $results->results;
+
+    // file_put_contents($file, "Before decoding: '" . $results . "'\n\n", FILE_APPEND);
+
+    $results = json_decode($results);
+
+    // file_put_contents($file, "After decoding: '" . $results->results[0]->name . "'\n\n", FILE_APPEND);
+
+    // file_put_contents($file, "Result: " . empty($results) . "\n\n", FILE_APPEND);
+
+    // file_put_contents($file, "Data: '" . $results . "'\n\n", FILE_APPEND);
+
+    // Either the API is down or something else spooky happened. Just be done.
+    if (!is_array($results->results) || empty($results->results)) {
+
+        file_put_contents($file, "False \n\n", FILE_APPEND);
+
+        return false;
+    }
+
+    $pokemons[] = $results->results;
+
+    file_put_contents($file, "After set: '" . $pokemons[0] . "'\n\n", FILE_APPEND);
+
+    foreach ($pokemons[0] as $pokemon) {
+
+    file_put_contents($file, $current_page . " Pokemon: " . $pokemon->name . "\n\n", FILE_APPEND);
+
+        $pokemon_slug = slugify($pokemon->name . '-' . $pokemon->id);
+
+        // only name is working 
+        // file_put_contents($file, "location_area_encounters: '" . $pokemon->location_area_encounters . "'\n\n", FILE_APPEND);
+
+        $existing_pokemon = get_page_by_path($pokemon_slug, 'OBJECT', 'pokemon');
+
+        if ($existing_pokemon === null) {
+
+            file_put_contents($file, "CHECK \n\n", FILE_APPEND);
+            $inserted_pokemon = wp_insert_post([
+                'post_name' => $pokemon_slug,
+                'post_title' => $pokemon_slug,
+                'post_type' => 'pokemons',
+                'post_status' => 'publish'
+            ]);
+
+            if (is_wp_error($inserted_pokemon) || $inserted_pokemon === 0) {
+                // die('Could not insert brewery: ' . $brewery_slug);
+                // error_log( 'Could not insert brewery: ' . $brewery_slug );
+                continue;
+            }
+
+            // add meta fields
+            $fillable = [
+                'field_5f7beb75a0d11' => 'abilities',
+                'field_5f7bed0862fe6' => 'forms',
+                'field_5f7bebb5a0d12' => 'base_experience',
+                'field_5f7bebe8a0d13' => 'game_indices',
+                'field_5f7bec02a0d14' => 'height',
+                'field_5f7bec0da0d15' => 'held_items',
+                'field_5f7bec20a0d16' => 'id',
+                'field_5f7bec2ba0d17' => 'is_default',
+                'field_5f7bec35a0d18' => 'location_area_encounters',
+                'field_5f7bec4ca0d19' => 'moves',
+                'field_5f7bec57a0d1a' => 'name',
+                'field_5f7bec5ca0d1b' => 'order',
+                'field_5f7bec63a0d1c' => 'species',
+                'field_5f7bec70a0d1d' => 'sprites',
+                'field_5f7bec7da0d1e' => 'stats',
+                'field_5f7bec89a0d1f' => 'types',
+                'field_5f7bec8fa0d20' => 'weight',
+            ];
+
+            foreach ($fillable as $key => $name) {
+                update_field($key, $pokemon->$name, $inserted_pokemon);
+            }
+        }
+
+        // else {
+
+        //     $existing_pokemon_id = $existing_pokemon->ID;
+        //     $exisiting_brewerey_timestamp = get_field('updated_at', $existing_pokemon_id);
+
+        //     if ($pokemon->updated_at >= $exisiting_brewerey_timestamp) {
+
+        //         $fillable = [
+        //             'field_5f7beb75a0d11' => 'abilities',
+        //             'field_5f7bed0862fe6' => 'forms',
+        //             'field_5f7bebb5a0d12' => 'base_experience',
+        //             'field_5f7bebe8a0d13' => 'game_indices',
+        //             'field_5f7bec02a0d14' => 'height',
+        //             'field_5f7bec0da0d15' => 'held_items',
+        //             'field_5f7bec20a0d16' => 'id',
+        //             'field_5f7bec2ba0d17' => 'is_default',
+        //             'field_5f7bec35a0d18' => 'location_area_encounters',
+        //             'field_5f7bec4ca0d19' => 'moves',
+        //             'field_5f7bec57a0d1a' => 'name',
+        //             'field_5f7bec5ca0d1b' => 'order',
+        //             'field_5f7bec63a0d1c' => 'species',
+        //             'field_5f7bec70a0d1d' => 'sprites',
+        //             'field_5f7bec7da0d1e' => 'stats',
+        //             'field_5f7bec89a0d1f' => 'types',
+        //             'field_5f7bec8fa0d20' => 'weight',
+        //         ];
+
+        //         foreach ($fillable as $key => $name) {
+        //             update_field($name, $pokemon->$name, $existing_pokemon_id);
+        //         }
+        //     }
+        // }
+    }
+
+    $current_page = $current_page + 1;
+    // file_put_contents($file, "New current page: '" . $current_page . "'\n\n", FILE_APPEND);
+
+    wp_remote_post(admin_url('admin-ajax.php?action=get_breweries_from_api'), [
+        'blocking' => false,
+        'sslverify' => false, // we are sending this to ourselves, so trust it.
+        'body' => [
+            'current_page' => $current_page
+        ]
+    ]);
+
+}
+
+function slugify($text)
+{
+    // remove unwanted characters
+    $text = preg_replace('~[^-\w]+~', '', $text);
+
+    // trim
+    $text = trim($text, '-');
+
+    // remove duplicate -
+    $text = preg_replace('~-+~', '-', $text);
+
+    // lowercase
+    $text = strtolower($text);
+
+    if (empty($text)) {
+        return 'n-a';
+    }
+
+    return $text;
+}
+
+
 
 add_action('plugins_loaded', array('PokemonPlugin', 'get_instance'));
 
